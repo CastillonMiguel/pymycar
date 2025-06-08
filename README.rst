@@ -1,7 +1,7 @@
 pyMyCar
 =======
 
-.. image:: https://raw.githubusercontent.com/CastillonMiguel/pymycar/main/docs/source/_static/logo_name.png
+.. image:: https://raw.githubusercontent.com/CastillonMiguel/pymycar/main/docs/source/_static/logo.png
    :target: https://pymycar.readthedocs.io/en/latest/index.html
    :alt: pymycar
 
