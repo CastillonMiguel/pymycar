@@ -12,3 +12,14 @@ Welcome to the `pyMyCar` package documentation! This package provides comprehens
 Contributions and Feedback
 --------------------------
 We welcome contributions and feedback from the community to enhance the code's functionality, reliability, and user experience.To get started, please review our `Contributing Guidelines <https://pymycar.readthedocs.io/en/latest/extras/DeveloperNotes/main.html>`_ to share your insights and collaborate with fellow developers.
+
+.. toctree::
+
+   getting-started/index
+   extras/index
+
+   
+..   theory/index
+..   api/index
+..   auto_examples/index
+
