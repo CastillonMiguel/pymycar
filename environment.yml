@@ -1,0 +1,12 @@
+name: pymycar-env
+channels:
+  - conda-forge
+dependencies:
+  - numpy
+  - pandas
+  - pyvista
+  - python=3.10
+  - scipy
+  - pytest
+  - tabulate
+  - pip

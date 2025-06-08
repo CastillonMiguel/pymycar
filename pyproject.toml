@@ -1,0 +1,27 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "pymycar"
+dynamic = ["version"]
+description = "pyMyCar: An Open-Source Framework for Vehicle Dynamics simulations"
+authors = [{ name="Miguel Castillon", email="miguel.research@pm.me" }]
+license = { file = "LICENSE" }
+readme = "README.rst"
+requires-python = ">=3.10"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = []
+keywords = ["car", "suspension", "dynamic", "vehicle"]
+
+[tool.hatch.version]
+path = "src/pymycar/__init__.py"
+
+[project.urls]
+Homepage = "https://github.com/CastillonMiguel/pymycar"
+Documentation = "https://pymycar.readthedocs.io"
+Issues = "https://github.com/CastillonMiguel/pymycar/issues"
