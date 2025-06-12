@@ -16,10 +16,11 @@ We welcome contributions and feedback from the community to enhance the code's f
 .. toctree::
 
    getting-started/index
+   auto_examples/index
    api/index
    extras/index
 
 
 ..   theory/index 
-..   auto_examples/index
+..   
 

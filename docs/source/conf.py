@@ -92,7 +92,7 @@ extensions = [
     'sphinx.ext.autosectionlabel',
     'sphinx_copybutton',
     'sphinx_math_dollar',
-    # 'sphinx_gallery.gen_gallery',
+    'sphinx_gallery.gen_gallery',
     'pyvista.ext.plot_directive',  #'matplotlib.sphinxext.plot_directive',
     "pyvista.ext.viewer_directive",
     "sphinx_design"
@@ -121,28 +121,28 @@ reset_pyvista = ResetPyVista()
 
 import warnings
 warnings.filterwarnings("ignore", category=UserWarning, module="trame.app")
-# nbsphinx_execute = 'auto'
-# sphinx_gallery_conf = {
-#      'examples_dirs': '../../examples',   # path to your example scripts
-#      'gallery_dirs': 'auto_examples',  # path to where to save gallery generated output
-#     # 'image_scrapers': ("pyvista", "matplotlib"),
-#      #'filename_pattern': r'.*\.py',
-#      'filename_pattern': '/plot_',
-#      'ignore_pattern': r'__init__\.py',
-#      'ignore_pattern': r'main',
-#      # Remove sphinx configuration comments from code blocks
-#     "remove_config_comments": True,
-#     # Sort gallery example by file name instead of number of lines (default)
-#     "within_subsection_order": FileNameSortKey,
-#     # directory where function granular galleries are stored
-#     "backreferences_dir": None,
-#     # Modules for which function level galleries are created.  In
-#     "doc_module": "pyvista",
-#     "image_scrapers": (DynamicScraper(), "matplotlib"),
-#     "first_notebook_cell": "%matplotlib inline",
-#     "reset_modules": (reset_pyvista,),
-#     "reset_modules_order": "both",
-# }
+nbsphinx_execute = 'auto'
+sphinx_gallery_conf = {
+     'examples_dirs': '../../examples',   # path to your example scripts
+     'gallery_dirs': 'auto_examples',  # path to where to save gallery generated output
+    # 'image_scrapers': ("pyvista", "matplotlib"),
+     #'filename_pattern': r'.*\.py',
+     'filename_pattern': '/plot_',
+     'ignore_pattern': r'__init__\.py',
+     'ignore_pattern': r'main',
+     # Remove sphinx configuration comments from code blocks
+    "remove_config_comments": True,
+    # Sort gallery example by file name instead of number of lines (default)
+    "within_subsection_order": FileNameSortKey,
+    # directory where function granular galleries are stored
+    "backreferences_dir": None,
+    # Modules for which function level galleries are created.  In
+    "doc_module": "pyvista",
+    "image_scrapers": (DynamicScraper(), "matplotlib"),
+    "first_notebook_cell": "%matplotlib inline",
+    "reset_modules": (reset_pyvista,),
+    "reset_modules_order": "both",
+}
 
 import re
 
