@@ -30,4 +30,3 @@ trame-vtk
 trame-vuetify
 trimesh
 pandas
-pymycar
