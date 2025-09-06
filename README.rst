@@ -36,41 +36,40 @@ Introduction
 ------------
 The **pyMyCar** project is a comprehensive Python library designed to facilitate the analysis and simulation of vehicle dynamics. This package provides tools to explore, simulate, and optimize various suspension configurations, enhancing vehicle performance and safety.
 
-Installation Instructions
---------------------------
-Follow these steps to set up your environment:
+Installation Instructions (Conda Environment)
+---------------------------------------------
+To install pyMyCar and its dependencies in a dedicated conda environment, follow these steps:
 
-1. Create a new conda environment:
-   
+1. Create a new conda environment (recommended for isolation):
+
    .. code-block:: sh
-   
+
       conda create -n pymycar-env
 
-2. Activate the new environment:
-   
+2. Activate the environment:
+
    .. code-block:: sh
-   
+
       conda activate pymycar-env
 
-3. Install `pandas`, and `pyvista` from the `conda-forge` channel:
-   
-   .. code-block:: sh
-   
-      conda install -c conda-forge  pyvista pandas
+3. Install required packages (`pandas`, `pyvista`) from the `conda-forge` channel:
 
-4. Finally, install the code from this repository:
-   
    .. code-block:: sh
-   
+
+      conda install -c conda-forge pyvista pandas
+
+4. Install pyMyCar from PyPI using pip:
+
+   .. code-block:: sh
+
       pip install pymycar
 
-These steps will set up all the necessary dependencies for running the code in this repository. Make sure to activate the `pymycar-env` environment whenever you work with this project.
+These instructions ensure all dependencies are installed in a clean, isolated conda environment. Always activate `pymycar-env` before working with this project.
 
 
 Examples
 --------
 There are numerous examples available to demonstrate the usage of pyMyCar for various vehicle dynamics simulations. These examples cover different scenarios such as suspension analysis, vehicle stability, and more complex dynamics simulations. Explore the examples in the `documentation <https://pymycar.readthedocs.io/en/latest/index.html>`_ to learn more.
-
 
 API Documentation
 -----------------
