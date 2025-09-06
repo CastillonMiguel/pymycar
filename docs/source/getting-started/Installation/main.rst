@@ -15,7 +15,7 @@ Follow these steps to set up your environment:
    
       conda activate pymycar-env
 
-3. Install FEniCSx, `mpich`, and `pyvista` from the `conda-forge` channel:
+3. Install `pandas`, and `pyvista` from the `conda-forge` channel:
    
    .. code-block:: sh
    

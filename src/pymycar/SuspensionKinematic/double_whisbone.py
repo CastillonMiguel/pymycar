@@ -80,9 +80,9 @@ def double_whisbone_base(data, max_height_increase, max_height_decrease, height_
 
     .. code-block::
 
-       #                        
-       #                    \\\    
-       #                    \-/  
+       #
+       #                    ///    
+       #                    \-/ 
        #             UCA_REAR* 
        #                    /
        #                   / 
@@ -90,7 +90,7 @@ def double_whisbone_base(data, max_height_increase, max_height_decrease, height_
        #    |       |    /
        #    |       |   *----------*UCA_FRONT
        #    |       | uca_outer   /⁻\ 
-       #    |       |             ///
+       #    |       |             /// 
        #    |       |
        #    |  wheel center
        #    |   *   |        tierod_outer
