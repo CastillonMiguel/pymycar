@@ -25,8 +25,5 @@ sphinx-toolbox
 sphinxcontrib-asciinema
 sphinxcontrib-websupport
 sympy
-trame
-trame-vtk
-trame-vuetify
 trimesh
 pandas
