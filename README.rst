@@ -52,11 +52,11 @@ To install pyMyCar and its dependencies in a dedicated conda environment, follow
 
       conda activate pymycar-env
 
-3. Install required packages (`pandas`, `pyvista`) from the `conda-forge` channel:
+3. Install the required packages from the `conda-forge` channel:
 
    .. code-block:: sh
 
-      conda install -c conda-forge pyvista pandas
+      conda install -c conda-forge scipy pyvista pandas tabulate
 
 4. Install pyMyCar from PyPI using pip:
 
