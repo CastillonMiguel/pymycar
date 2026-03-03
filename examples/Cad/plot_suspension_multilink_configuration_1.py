@@ -94,7 +94,7 @@ data = {
 
 
 upper_control_arm, lower_control_arm, upper_control_arm_aux, lower_control_arm_aux, direction, wheel_center1, spring_o = multilink_cad_configuration_1(data, None)
-wheel = pv.Cylinder(data["wheel_center"], direction=(0, 1, 0), height=50, radius=200)
+wheel = pv.Cylinder(center=data["wheel_center"], direction=(0, 1, 0), height=50, radius=200)
 
 plotter = pv.Plotter()
 plotter.add_mesh(upper_control_arm, color="blue"),

@@ -95,7 +95,7 @@ data = {
 
 
 upper_control_arm, lower_control_arm, direction, wheel_center, spring_o, push_rod, rocked_o =  whisbone_cad_configuration_2(data, None)
-wheel = pv.Cylinder(data["wheel_center"], direction=(0, 1, 0), height=50, radius=200)
+wheel = pv.Cylinder(center=data["wheel_center"], direction=(0, 1, 0), height=50, radius=200)
 
 plotter = pv.Plotter()
 plotter.add_mesh(upper_control_arm, color="blue"),
