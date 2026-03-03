@@ -1,4 +1,4 @@
-"""
+r"""
 .. _ref_cad_chassis:
 
 Chassis Visualization Example

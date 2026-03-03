@@ -80,9 +80,9 @@ def double_whisbone_base(data, max_height_increase, max_height_decrease, height_
 
     .. code-block::
 
-       #                        
-       #                    \\\    
-       #                    \-/  
+       #
+       #                    ///    
+       #                    \-/ 
        #             UCA_REAR* 
        #                    /
        #                   / 
@@ -90,7 +90,7 @@ def double_whisbone_base(data, max_height_increase, max_height_decrease, height_
        #    |       |    /
        #    |       |   *----------*UCA_FRONT
        #    |       | uca_outer   /⁻\ 
-       #    |       |             ///
+       #    |       |             /// 
        #    |       |
        #    |  wheel center
        #    |   *   |        tierod_outer
@@ -348,7 +348,7 @@ def double_whisbone_configuration_1(data, max_height_increase, max_height_decrea
     .. code-block::
 
        #                        
-       #                    \\\    
+       #                    ///    
        #                    \-/  
        #             UCA_REAR* 
        #                    /
@@ -559,8 +559,8 @@ def double_whisbone_configuration_2(data, max_height_increase, max_height_decrea
     .. code-block::
 
        #                                        l_spring_mount
-       #                                        *-\/\/\/\/\/\/\/\/\/\/--* U_SPRING_MOUNT
-       #                    \\\                /|                      /⁻\ 
+       #                                        *-\/\/\/\/\/\/\/\/\/\/\--* U_SPRING_MOUNT
+       #                    ///                /|                      /⁻\ 
        #                    \-/  pushrod inner* |  *ROCKER PIVOT AXIS  ///
        #             uca_rear*               / \| /
        #                    /               /   *ROCKER PIVOT

@@ -72,7 +72,7 @@ def multilink(data, max_height_increase, max_height_decrease, height_step, save_
     .. code-block::
 
        #                        
-       #                    \\\    
+       #                    ///    
        #                    \-/  
        #             UCA_REAR* 
        #                    /
@@ -80,7 +80,7 @@ def multilink(data, max_height_increase, max_height_decrease, height_step, save_
        #   -----------    /
        #    |       |    /
        #    |       |   *----------*UCA_FRONT
-       #    |       | uca_outer   /⁻\
+       #    |       | uca_outer   /⁻\ 
        #    |       |             ///
        #    |       |
        #    |       |
@@ -90,11 +90,11 @@ def multilink(data, max_height_increase, max_height_decrease, height_step, save_
        #    |       |
        #    |       |       lca_outer
        #    |       |      *------------*LCA_REAR
-       #   -----------     \           /⁻\
+       #   -----------     \           /⁻\ 
        #                    \          ///
-       #                     \
+       #                     \ 
        #                      *LCA_FRONT
-       #                     /⁻\
+       #                     /⁻\ 
        #                     ///
 
     +--------------+-------------------------------+
@@ -287,7 +287,7 @@ def multilink_configuration_1(data, max_height_increase, max_height_decrease, he
     .. code-block::
 
        #                        
-       #                    \\\  
+       #                    ///  
        #                    \-/
        #             UCA_REAR*
        #                    /
@@ -295,7 +295,7 @@ def multilink_configuration_1(data, max_height_increase, max_height_decrease, he
        #   -----------    /
        #    |       |    /
        #    |       |   *----------*UCA_FRONT
-       #    |       |  uca_outer  /⁻\
+       #    |       |  uca_outer  /⁻\ 
        #    |       |             ///
        #    |       |
        #    |       |
@@ -305,11 +305,11 @@ def multilink_configuration_1(data, max_height_increase, max_height_decrease, he
        #    |       |
        #    |       |       lca_outer
        #    |       |      *------------*LCA_REAR
-       #   -----------     \           /⁻\
+       #   -----------     \           /⁻\ 
        #                    \          ///
-       #                     \
+       #                     \ 
        #                      *LCA_FRONT
-       #                     /⁻\
+       #                     /⁻\ 
        #                     ///
 
     Example

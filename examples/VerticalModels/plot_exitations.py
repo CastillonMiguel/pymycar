@@ -1,4 +1,4 @@
-"""
+r"""
 .. _ref_vertical_models_exitations_example:
 
 Excitation function

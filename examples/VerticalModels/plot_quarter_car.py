@@ -1,4 +1,4 @@
-"""
+r"""
 .. _ref_vertical_models_quarter_car_example:
 
 Quarter_car_example

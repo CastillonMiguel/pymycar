@@ -8,7 +8,7 @@ To study a kinematic analysis, the first step is to define the initial position 
 
 Natural Coordinates 
 -------------------
-**Natural Coordinates** [de_Jalon]_: These coordinates independently define each element in the suspension system, with reference points located on the kinematic pairs. This approach eliminates the need for angular variables, offering several advantages:
+**Natural Coordinates** [deJalon1994]_: These coordinates independently define each element in the suspension system, with reference points located on the kinematic pairs. This approach eliminates the need for angular variables, offering several advantages:
 
 - **Simple and Systematic Definition**: Each element is defined in a straightforward manner, making the overall system easier to understand and manage.
 - **Easy Formulation of Constraint Equations**: Constraint equations are simpler to formulate, reducing the complexity of the mathematical model.
@@ -104,6 +104,3 @@ Convention for Writing Proposals
    +====================+======================+==========================+
    | example            | $\alpha$             | $\beta$                  |
    +--------------------+----------------------+--------------------------+
-
-.. [de_Jalon] Javier García de Jalón, Eduardo Bayo; Kinematic and Dynamic Simulation of Multibody Systems, 1994, ISBN : 978-1-4612-7601-2
-

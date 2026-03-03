@@ -5,7 +5,7 @@ The multilink suspension is a type of suspension system that uses a series of ar
 
 Key Components
 ^^^^^^^^^^^^^^
-The multilink suspension can be viewed as a variation of the :ref:`double_wishbone_suspension`, where the *Upper Control Arm* and the *Lower Control Arm* are split into two bars.
+The multilink suspension can be viewed as a variation of the :ref:`double_whisbone_suspension`, where the *Upper Control Arm* and the *Lower Control Arm* are split into two bars.
 
 * **Upper Control Arms (UCAs)**: The upper bars or control arms connect the upper part of the wheel hub to the vehicle chassis. They help control the vertical movement of the wheel and maintain the wheel's alignment.
 
@@ -21,7 +21,7 @@ Configuration: Base
 -------------------
 
 .. note::
-    For an interactive visualization of the suspension, view the CAD example representation: :ref:`ref_cad_suspension_multilink`.
+    For an interactive visualization of the suspension, view the CAD example representation: :ref:`ref_cadsuspension_multilink_base`.
 
 The base system of the Double Wishbone suspension is defined using 11 points, as presented in :ref:`table_points_description_multilink_base`. Of these, 6 points represent the vehicle chassis and are considered fixed, as the kinematic analysis is relative to these coordinates.
 

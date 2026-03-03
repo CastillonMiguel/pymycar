@@ -44,7 +44,7 @@ import pymycar
 #     pyvista.MultiBlock
 #         A PyVista MultiBlock containing the wheel mesh.
 #     """
-#     wheel = pv.Cylinder(data["wheel_center"][index], direction=(0, 1, 0), height=80, radius=100)
+#     wheel = pv.Cylinder(center=data["wheel_center"][index], direction=(0, 1, 0), height=80, radius=100)
   
 #     angle_x = np.rad2deg(wheel_variables["toe_angle"][index])
 #     angle_y = np.rad2deg(wheel_variables["side_view_angle"][index])

@@ -45,8 +45,8 @@ def control_arm(uca_front, uca_rear, uca_outer_i, radius=10, resolution=100, n_s
     to the outer point.
 
     """
-    e1 = pv.Tube(uca_front, uca_outer_i, resolution, radius, n_sides)
-    e2 = pv.Tube(uca_rear, uca_outer_i, resolution, radius, n_sides)
+    e1 = pv.Tube(pointa=uca_front, pointb=uca_outer_i, resolution=resolution, radius=radius, n_sides=n_sides)
+    e2 = pv.Tube(pointa=uca_rear, pointb=uca_outer_i, resolution=resolution, radius=radius, n_sides=n_sides)
     return pv.MultiBlock([e1, e2])
 
 
@@ -77,7 +77,7 @@ def simple_tube(tierod_inner, tierod_outer_i, radius=5, resolution=100, n_sides=
     The simple tube is formed by a single Tube connecting the inner and outer points.
 
     """
-    e5 = pv.Tube(tierod_inner, tierod_outer_i, resolution, radius, n_sides)
+    e5 = pv.Tube(pointa=tierod_inner, pointb=tierod_outer_i, resolution=resolution, radius=radius, n_sides=n_sides)
     return pv.MultiBlock([e5])
 
 
@@ -129,7 +129,7 @@ def simple_sphere(wheel_center_i, radius):
     The simple sphere is a Sphere centered at the specified point with the given radius.
 
     """
-    point_wheel_center = pv.Sphere(radius, wheel_center_i, theta_resolution=30, phi_resolution=30)
+    point_wheel_center = pv.Sphere(radius=radius, center=wheel_center_i, theta_resolution=30, phi_resolution=30)
     return pv.MultiBlock([point_wheel_center])
 
 

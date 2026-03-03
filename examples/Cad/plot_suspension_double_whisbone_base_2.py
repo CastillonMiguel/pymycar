@@ -1,4 +1,4 @@
-"""
+r"""
 .. _ref_cad_suspension_double_whisbone_configuration_2:
 
 Double Whisbonebase: Base
@@ -86,7 +86,7 @@ data = {
 
 
 upper_control_arm, lower_control_arm, direction, wheel_center1 = whisbone_cad_base(data, None)
-wheel = pv.Cylinder(data["wheel_center"], direction=(0, 1, 0), height=50, radius=200)
+wheel = pv.Cylinder(center=data["wheel_center"], direction=(0, 1, 0), height=50, radius=200)
 
 ###############################################################################
 # Parameters Definition
@@ -105,7 +105,7 @@ data2 = {
 
 
 upper_control_arm2, lower_control_arm2, direction2, wheel_center12 = whisbone_cad_base(data2, None)
-wheel2 = pv.Cylinder(data2["wheel_center"], direction=(0, 1, 0), height=50, radius=200)
+wheel2 = pv.Cylinder(center=data2["wheel_center"], direction=(0, 1, 0), height=50, radius=200)
 
 plotter = pv.Plotter()
 plotter.add_mesh(upper_control_arm, color="blue"),

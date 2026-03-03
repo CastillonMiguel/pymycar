@@ -15,11 +15,11 @@ Follow these steps to set up your environment:
    
       conda activate pymycar-env
 
-3. Install FEniCSx, `mpich`, and `pyvista` from the `conda-forge` channel:
+3. Install the required packages from the `conda-forge` channel:
    
    .. code-block:: sh
    
-      conda install -c conda-forge  pyvista pandas
+     conda install -c conda-forge scipy pyvista pandas tabulate
 
 4. Finally, install the code from this repository:
    
