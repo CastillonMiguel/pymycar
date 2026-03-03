@@ -8,4 +8,5 @@ For more information on contributing and how you can support the development of 
    :hidden:
 
    DeveloperNotes/main
+   References/main
    Acknowledgements/main
