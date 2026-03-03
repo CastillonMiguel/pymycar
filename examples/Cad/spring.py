@@ -17,7 +17,7 @@ radius = 10.0
 n_sides = 10
 
 # Create the tube
-e5 = pv.Tube(tierod_inner, tierod_outer_i, resolution, radius, n_sides)
+e5 = pv.Tube(pointa=tierod_inner, pointb=tierod_outer_i, resolution=resolution, radius=radius, n_sides=n_sides)
 
 # Calculate the direction and length of the tube
 direction = tierod_outer_i - tierod_inner
