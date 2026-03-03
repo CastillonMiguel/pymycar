@@ -31,5 +31,5 @@ dependencies:
   - typing-extensions
   - pip:
       - pytest-memprof
-      - -r requirements.txt
+      - -r docs/requirements.txt
       - -e ..
