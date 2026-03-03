@@ -1,4 +1,4 @@
-"""
+r"""
 .. _ref_plot_spring:
 
 Spring

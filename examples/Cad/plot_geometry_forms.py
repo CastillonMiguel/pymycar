@@ -1,4 +1,4 @@
-"""
+r"""
 .. _ref_cad_geometry_basic_forms:
 
 Geometry Basic Forms

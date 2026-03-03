@@ -1,4 +1,4 @@
-"""
+r"""
 .. _ref_vertical_models_full_car_example:
 
 Vertical full car

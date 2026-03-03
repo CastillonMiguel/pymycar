@@ -1,4 +1,4 @@
-"""
+r"""
 .. _ref_cad_suspension_multilink_configuration_1:
 
 Multilink: Configuration 1

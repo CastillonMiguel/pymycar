@@ -1,4 +1,4 @@
-"""
+r"""
 .. _ref_vertical_models_half_car_example:
 
 Half car example
