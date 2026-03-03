@@ -24,22 +24,19 @@ jobs:
         auto-activate-base: false
 
     - name: Create conda environment from environment.yml
+      shell: bash -l {0}
       run: |
         conda env create --file environment.yml  # Create environment from environment.yml
-        conda init zsh
-        source ~/.zshrc
         conda activate pymycar-env  # Replace 'test-env' with your actual environment name
 
     - name: Install project dependencies (pyproject.toml)
+      shell: bash -l {0}
       run: |
-        conda init zsh
-        source ~/.zshrc
         conda activate pymycar-env
         pip install .
 
     - name: Run tests with pytest
+      shell: bash -l {0}
       run: |
-        conda init zsh
-        source ~/.zshrc
         conda activate pymycar-env
         pytest test/ --disable-warnings
