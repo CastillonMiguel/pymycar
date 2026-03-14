@@ -2,11 +2,9 @@ name: pymycar-docs-env
 channels:
   - conda-forge
 dependencies:
-  - python=3.10
-  - pyvista
+  - python=3.10  
   - pandas
   - sympy
-  - jupyterlab
   - numpy
   - vtk
   - scooby>=0.5.1
@@ -27,9 +25,13 @@ dependencies:
   - rtree
   - pyembree
   - pooch
+  - pyvista  
   - trame
-  - trame-vuetify
   - trame-vtk
+  - trame-vuetify
+  - jupyterlab
+  - jupyter-sphinx
+  - ipywidgets
   - typing-extensions
   - pip:
       - pytest-memprof
