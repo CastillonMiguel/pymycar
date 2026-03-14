@@ -15,18 +15,18 @@ These functions provide an easy way to generate basic geometric components for m
 import pyvista as pv
 import numpy as np
 
-def control_arm(uca_front, uca_rear, uca_outer_i, radius=10, resolution=100, n_sides=10):
+def control_arm(point_a, point_b, common_point, radius=10, resolution=100, n_sides=10):
     """
-    Generate a control arm.
+    Generate a control arm (V-shape structure).
 
     Parameters
     ----------
-    uca_front : array-like
-        Coordinates of the front point of the control arm.
-    uca_rear : array-like
-        Coordinates of the rear point of the control arm.
-    uca_outer_i : array-like
-        Coordinates of the outer point of the control arm.
+    point_a : array-like
+        Coordinates of the first base point of the control arm.
+    point_b : array-like
+        Coordinates of the second base point of the control arm.
+    common_point : array-like
+        Coordinates of the common apex point of the control arm.
     radius : float, optional
         Radius of the Tubes, by default 10.
     resolution : int, optional
@@ -41,25 +41,37 @@ def control_arm(uca_front, uca_rear, uca_outer_i, radius=10, resolution=100, n_s
 
     Notes
     -----
-    The control arm is formed by two Tubes connecting the front and rear points
-    to the outer point.
+    The control arm is formed by two Tubes connecting the base points
+    to the common apex point.
 
+    Examples
+    --------
+    Create a control arm mapping between three coordinates and show it using PyVista.
+
+    >>> import numpy as np
+    >>> import pyvista as pv
+    >>> from pymycar.Cad import control_arm
+    >>> a = control_arm(np.array([586.7, -314.5, 199.9]), np.array([930.7, -230.2, 244.2]), np.array([953.0, -474.2, 272.2]), radius=10, resolution=100, n_sides=10)
+    >>> plotter = pv.Plotter()
+    >>> plotter.add_mesh(a, color='red', name="Control Arm")
+    >>> plotter.add_title("Control Arm")
+    >>> plotter.show()
     """
-    e1 = pv.Tube(pointa=uca_front, pointb=uca_outer_i, resolution=resolution, radius=radius, n_sides=n_sides)
-    e2 = pv.Tube(pointa=uca_rear, pointb=uca_outer_i, resolution=resolution, radius=radius, n_sides=n_sides)
+    e1 = pv.Tube(pointa=point_a, pointb=common_point, resolution=resolution, radius=radius, n_sides=n_sides)
+    e2 = pv.Tube(pointa=point_b, pointb=common_point, resolution=resolution, radius=radius, n_sides=n_sides)
     return pv.MultiBlock([e1, e2])
 
 
-def simple_tube(tierod_inner, tierod_outer_i, radius=5, resolution=100, n_sides=10):
+def simple_tube(point_a, point_b, radius=5, resolution=100, n_sides=10):
     """
     Generate a simple tube.
 
     Parameters
     ----------
-    tierod_inner : array-like
-        Coordinates of the inner point of the tube.
-    tierod_outer_i : array-like
-        Coordinates of the outer point of the tube.
+    point_a : array-like
+        Coordinates of the first point of the tube.
+    point_b : array-like
+        Coordinates of the second point of the tube.
     radius : float, optional
         Radius of the Tube, by default 10.
     resolution : int, optional
@@ -76,18 +88,30 @@ def simple_tube(tierod_inner, tierod_outer_i, radius=5, resolution=100, n_sides=
     -----
     The simple tube is formed by a single Tube connecting the inner and outer points.
 
+    Examples
+    --------
+    Create a tube between two coordinates and show it using PyVista.
+
+    >>> import numpy as np
+    >>> import pyvista as pv
+    >>> from pymycar.Cad import simple_tube
+    >>> tube = simple_tube(np.array([934.2, -192.1, 81.2]), np.array([1027.1, -513.7, 43.6]), radius=10, resolution=100, n_sides=10)
+    >>> plotter = pv.Plotter()
+    >>> plotter.add_mesh(tube, color='blue', name="Tie Rod Tube")
+    >>> plotter.add_title("Tie Rod Tube")
+    >>> plotter.show()
     """
-    e5 = pv.Tube(pointa=tierod_inner, pointb=tierod_outer_i, resolution=resolution, radius=radius, n_sides=n_sides)
+    e5 = pv.Tube(pointa=point_a, pointb=point_b, resolution=resolution, radius=radius, n_sides=n_sides)
     return pv.MultiBlock([e5])
 
 
-def simple_cylinder(wheel_center_i, height, radius):
+def simple_cylinder(center, height, radius):
     """
     Generate a simple cylinder.
 
     Parameters
     ----------
-    wheel_center_i : array-like
+    center : array-like
         Coordinates of the center of the cylinder.
     height : float
         Height of the cylinder.
@@ -103,18 +127,67 @@ def simple_cylinder(wheel_center_i, height, radius):
     -----
     The simple cylinder is a Cylinder centered at the specified point with the given height and radius.
 
+    Examples
+    --------
+    Create a cylinder at a specific coordinate and show it using PyVista.
+
+    >>> import numpy as np
+    >>> import pyvista as pv
+    >>> from pymycar.Cad import simple_cylinder
+    >>> b = simple_cylinder(np.array([941.5, -580.2, 155.1]), height=10, radius=5)
+    >>> plotter = pv.Plotter()
+    >>> plotter.add_mesh(b, color='green', name="Wheel Center Cylinder")
+    >>> plotter.add_title("Wheel Center Cylinder")
+    >>> plotter.show()
     """
-    wheel = pv.Cylinder(center=wheel_center_i, direction=(0, 1, 0), height=height, radius=radius)
+    wheel = pv.Cylinder(center=center, direction=(0, 1, 0), height=height, radius=radius)
     return pv.MultiBlock([wheel])
 
+def cylinder_from_two_points(center, point_a, point_b, height, radius):
+    """
+    Create a PyVista cylinder whose direction is defined by two points.
 
-def simple_sphere(wheel_center_i, radius):
+    Parameters
+    ----------
+    center : array-like
+        Cylinder center [x, y, z].
+    point_a : array-like
+        First point defining the direction.
+    point_b : array-like
+        Second point defining the direction.
+    height : float
+        Cylinder height.
+    radius : float
+        Cylinder radius.
+
+    Returns
+    -------
+    pyvista.PolyData
+        Cylinder mesh.
+    """
+
+    point_a = np.asarray(point_a)
+    point_b = np.asarray(point_b)
+
+    direction = point_b - point_a
+    direction = direction / np.linalg.norm(direction)
+
+    cylinder = pv.Cylinder(
+        center=center,
+        direction=direction,
+        height=height,
+        radius=radius
+    )
+
+    return pv.MultiBlock([cylinder])
+
+def simple_sphere(center, radius):
     """
     Generate a simple sphere.
 
     Parameters
     ----------
-    wheel_center_i : array-like
+    center : array-like
         Coordinates of the center of the sphere.
     radius : float
         Radius of the sphere.
@@ -128,20 +201,32 @@ def simple_sphere(wheel_center_i, radius):
     -----
     The simple sphere is a Sphere centered at the specified point with the given radius.
 
+    Examples
+    --------
+    Create a sphere at a specific coordinate and show it using PyVista.
+
+    >>> import numpy as np
+    >>> import pyvista as pv
+    >>> from pymycar.Cad import simple_sphere
+    >>> c = simple_sphere(np.array([941.5, -580.2, 155.1]), radius=10)
+    >>> plotter = pv.Plotter()
+    >>> plotter.add_mesh(c, color='yellow', name="Wheel Center Sphere")
+    >>> plotter.add_title("Wheel Center Sphere")
+    >>> plotter.show()
     """
-    point_wheel_center = pv.Sphere(radius=radius, center=wheel_center_i, theta_resolution=30, phi_resolution=30)
+    point_wheel_center = pv.Sphere(radius=radius, center=center, theta_resolution=30, phi_resolution=30)
     return pv.MultiBlock([point_wheel_center])
 
 
-def spring(u_spring_mount, l_spring_mount_i, radius=5):
+def spring(point_a, point_b, radius=5):
     """
     Generate a spring.
 
     Parameters
     ----------
-    u_spring_mount : array-like
+    point_a : array-like
         Coordinates of the upper mounting point of the spring.
-    l_spring_mount_i : array-like
+    point_b : array-like
         Coordinates of the lower mounting point of the spring.
     radius : float, optional
         Radius of the Spheres and the Tube, by default 10.
@@ -156,20 +241,32 @@ def spring(u_spring_mount, l_spring_mount_i, radius=5):
     The spring is formed by two Spheres at the upper and lower mounting points
     and a Tube connecting them.
 
-    """
-    p1 = simple_sphere(u_spring_mount, radius)
-    p2 = simple_sphere(l_spring_mount_i, radius)
-    return pv.MultiBlock([p1, p2, simple_tube(u_spring_mount, l_spring_mount_i)])
+    Examples
+    --------
+    Create a spring structure mapping between two coordinates and show it using PyVista.
 
-def spring_old(u_spring_mount, l_spring_mount, radius=10, coil_radius=10, n_coils=1, n_points=1000):
+    >>> import numpy as np
+    >>> import pyvista as pv
+    >>> from pymycar.Cad import spring
+    >>> d = spring(np.array([831.7, -278.7, 251.2]), np.array([849.2, -419.1, 76.4]), radius=10)
+    >>> plotter = pv.Plotter()
+    >>> plotter.add_mesh(d, color='purple', name="Spring")
+    >>> plotter.add_title("Spring Structure")
+    >>> plotter.show()
+    """
+    p1 = simple_sphere(point_a, radius)
+    p2 = simple_sphere(point_b, radius)
+    return pv.MultiBlock([p1, p2, simple_tube(point_a, point_b)])
+
+def spring_old(point_a, point_b, radius=10, coil_radius=10, n_coils=1, n_points=1000):
     """
     Generate a spring.
 
     Parameters
     ----------
-    u_spring_mount : array-like
+    point_a : array-like
         Coordinates of the upper mounting point of the spring.
-    l_spring_mount : array-like
+    point_b : array-like
         Coordinates of the lower mounting point of the spring.
     radius : float, optional
         Radius of the Spheres, by default 10.
@@ -191,12 +288,12 @@ def spring_old(u_spring_mount, l_spring_mount, radius=10, coil_radius=10, n_coil
     and a Helix representing the spring coil.
     """
     # Create spheres at the mounting points
-    p1 = pv.Sphere(radius=radius, center=u_spring_mount)
-    p2 = pv.Sphere(radius=radius, center=l_spring_mount)
+    p1 = pv.Sphere(radius=radius, center=point_a)
+    p2 = pv.Sphere(radius=radius, center=point_b)
     p3 = pv.Sphere(radius=radius, center=[0,0,0])
     
     # Calculate the direction and length of the spring
-    direction = l_spring_mount - u_spring_mount
+    direction = point_b - point_a
     direction = direction[0]
     length = np.linalg.norm(direction)
     direction = direction.astype(float) / length
@@ -229,18 +326,18 @@ def spring_old(u_spring_mount, l_spring_mount, radius=10, coil_radius=10, n_coil
 
     return pv.MultiBlock([p1, p3, extruded])
 
-def rocked(rocked_pivot, l_spring_mount, push_rod_inner_i):
+def rocked(pivot, point_a, point_b):
     """
     Generate a structure with tubes connecting various points.
 
     Parameters
     ----------
-    rocked_pivot : array-like
-        Coordinates of the rocked pivot point.
-    l_spring_mount : array-like
-        Coordinates of the lower mounting point of the spring.
-    push_rod_inner_i : array-like
-        Coordinates of the inner point of the push rod.
+    pivot : array-like
+        Coordinates of the central pivot point.
+    point_a : array-like
+        Coordinates of the first connecting point.
+    point_b : array-like
+        Coordinates of the second connecting point.
 
     Returns
     -------
@@ -252,7 +349,44 @@ def rocked(rocked_pivot, l_spring_mount, push_rod_inner_i):
     The structure is formed by three Tubes connecting various points.
 
     """
-    e1 = simple_tube(rocked_pivot, l_spring_mount)
-    e2 = simple_tube(rocked_pivot, push_rod_inner_i)
-    e3 = simple_tube(l_spring_mount, push_rod_inner_i)
+    e1 = simple_tube(pivot, point_a)
+    e2 = simple_tube(pivot, point_b)
+    e3 = simple_tube(point_a, point_b)
+    return pv.MultiBlock([e1, e2, e3])
+
+def rectangle_U(base_a, base_b, point_a, point_b, radius=10, resolution=100, n_sides=10):
+    """
+    Generate a U-shaped rectangular control arm using three tubes.
+
+    Parameters
+    ----------
+    base_a : array-like
+        Coordinates of the first base point of the control arm.
+    base_b : array-like
+        Coordinates of the second base point of the control arm.
+    point_a : array-like
+        Coordinates of the extended point connecting to base_a.
+    point_b : array-like
+        Coordinates of the extended point connecting to base_b.
+    radius : float, optional
+        Radius of the tubes, by default 10.
+    resolution : int, optional
+        Resolution of the tubes, by default 100.
+    n_sides : int, optional
+        Number of sides of the tubes, by default 10.
+
+    Returns
+    -------
+    pv.MultiBlock
+        MultiBlock containing three tubes representing the U-shaped control arm.
+
+    Notes
+    -----
+    The control arm is formed by two tubes connecting the base points
+    to their respective extended points, and a third tube connecting the two extended points.
+    This forms a U-shaped rectangular structure.
+    """
+    e1 = pv.Tube(pointa=base_a, pointb=point_a, resolution=resolution, radius=radius, n_sides=n_sides)
+    e2 = pv.Tube(pointa=base_b, pointb=point_b, resolution=resolution, radius=radius, n_sides=n_sides)
+    e3 = pv.Tube(pointa=point_a, pointb=point_b, resolution=resolution, radius=radius, n_sides=n_sides)
     return pv.MultiBlock([e1, e2, e3])

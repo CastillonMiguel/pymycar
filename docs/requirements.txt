@@ -20,3 +20,4 @@ sphinxcontrib-asciinema
 sphinxcontrib-websupport
 sphinxcontrib-bibtex
 sphinxcontrib-tikz
+gmsh
