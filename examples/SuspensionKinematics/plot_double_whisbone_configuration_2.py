@@ -183,103 +183,103 @@ ax.set_title('Wheel Jounce - Kingpin Angle')
 plt.show()
 
 
-last_meshes = []
-def plot_frame(plotter, data, index=None):
-    global last_meshes
+# last_meshes = []
+# def plot_frame(plotter, data, index=None):
+#     global last_meshes
 
-    if index is None:
-        index = data["index_reference"]
+#     if index is None:
+#         index = data["index_reference"]
 
-    upper_control_arm, lower_control_arm, direction, wheel_center, spring_o , push_rod, rocked_o = whisbone_cad_configuration_2(data,index)
-    wheel = wheel_cad(data, wheel_variables, index)
+#     upper_control_arm, lower_control_arm, direction, wheel_center, spring_o , push_rod, rocked_o = whisbone_cad_configuration_2(data,index)
+#     wheel = wheel_cad(data, wheel_variables, index)
     
-    # Remove the last meshes
-    for mesh in last_meshes:
-        plotter.remove_actor(mesh)
+#     # Remove the last meshes
+#     for mesh in last_meshes:
+#         plotter.remove_actor(mesh)
 
-    # Add new meshes
-    last_meshes = [
+#     # Add new meshes
+#     last_meshes = [
 
-        plotter.add_mesh(wheel_center, color="black"),
-        plotter.add_mesh(upper_control_arm, color="blue"),
-        plotter.add_mesh(lower_control_arm, color="pink"),
-        plotter.add_mesh(direction, color="green"),
-        plotter.add_mesh(wheel, color="black", opacity=0.5),
-        plotter.add_mesh(spring_o, color="red"),
-        plotter.add_mesh(spring_o, color="red"),
-        plotter.add_mesh(push_rod, color="black"),
-        plotter.add_mesh(rocked_o, color="yellow"),
-    ]
-
-
-plotter = pv.Plotter()
-def create_mesh(value):
-    res = np.abs(solution["wheel_center"][:,2] - value).argmin()
-    plot_frame(plotter, solution, index=res)
-
-plotter.add_slider_widget(create_mesh,
-                          rng=[solution["wheel_center"][0, 2], solution["wheel_center"][-1, 2]],
-                          value=solution["wheel_center"][solution["index_reference"]][2],
-                          title='Jounce')
-plotter.show()
+#         plotter.add_mesh(wheel_center, color="black"),
+#         plotter.add_mesh(upper_control_arm, color="blue"),
+#         plotter.add_mesh(lower_control_arm, color="pink"),
+#         plotter.add_mesh(direction, color="green"),
+#         plotter.add_mesh(wheel, color="black", opacity=0.5),
+#         plotter.add_mesh(spring_o, color="red"),
+#         plotter.add_mesh(spring_o, color="red"),
+#         plotter.add_mesh(push_rod, color="black"),
+#         plotter.add_mesh(rocked_o, color="yellow"),
+#     ]
 
 
+# plotter = pv.Plotter()
+# def create_mesh(value):
+#     res = np.abs(solution["wheel_center"][:,2] - value).argmin()
+#     plot_frame(plotter, solution, index=res)
+
+# plotter.add_slider_widget(create_mesh,
+#                           rng=[solution["wheel_center"][0, 2], solution["wheel_center"][-1, 2]],
+#                           value=solution["wheel_center"][solution["index_reference"]][2],
+#                           title='Jounce')
+# plotter.show()
 
 
 
-# Global to store last added meshes (e.g., control arms, wheel, etc.)
-last_meshes = []
 
 
-def create_mesh(value):
-    # Find the closest index based on the wheel_center's Z position
-    res = np.abs(solution["wheel_center"][:, 2] - value).argmin()
+# # Global to store last added meshes (e.g., control arms, wheel, etc.)
+# last_meshes = []
+
+
+# def create_mesh(value):
+#     # Find the closest index based on the wheel_center's Z position
+#     res = np.abs(solution["wheel_center"][:, 2] - value).argmin()
     
-    # Plot the frame using the found index
-    plot_frame(plotter, solution, index=res)
+#     # Plot the frame using the found index
+#     plot_frame(plotter, solution, index=res)
 
-    # Get the corresponding jounce value and the kingpin angle
-    jounce_value = wheel_variables["wheel_jounce"][res]
-    kingpin_angle = wheel_variables["kingpin_angle"][res]
+#     # Get the corresponding jounce value and the kingpin angle
+#     jounce_value = wheel_variables["wheel_jounce"][res]
+#     kingpin_angle = wheel_variables["kingpin_angle"][res]
 
-    # Clear the previous points on the Matplotlib plot and re-plot the line
-    ax.clear()
-    ax.plot(wheel_variables["wheel_jounce"], wheel_variables["kingpin_angle"], label="Kingpin vs Jounce", color='blue')
+#     # Clear the previous points on the Matplotlib plot and re-plot the line
+#     ax.clear()
+#     ax.plot(wheel_variables["wheel_jounce"], wheel_variables["kingpin_angle"], label="Kingpin vs Jounce", color='blue')
 
-    # Plot only the current point on the graph
-    ax.scatter(jounce_value, kingpin_angle, color='red', zorder=5)  # Plot the point on the chart
+#     # Plot only the current point on the graph
+#     ax.scatter(jounce_value, kingpin_angle, color='red', zorder=5)  # Plot the point on the chart
 
-    # Redraw the plot to update the point
-    plt.draw()
+#     # Redraw the plot to update the point
+#     plt.draw()
 
-# Initialize the plotter
-plotter = pv.Plotter()
+# # Initialize the plotter
+# plotter = pv.Plotter()
 
-# Create the mesh based on the jounce (slider position)
-plotter.add_slider_widget(create_mesh,
-                          [solution["wheel_center"][0, 2], solution["wheel_center"][-1, 2]], 
-                          value=solution["index_reference"], 
-                          title='Jounce')
+# # Create the mesh based on the jounce (slider position)
+# plotter.add_slider_widget(create_mesh,
+#                           [solution["wheel_center"][0, 2], solution["wheel_center"][-1, 2]], 
+#                           value=solution["index_reference"], 
+#                           title='Jounce')
 
-# Create a Matplotlib chart for visualization
-f, ax = plt.subplots(tight_layout=True)
-ax.plot(wheel_variables["wheel_jounce"], wheel_variables["kingpin_angle"], label="Kingpin vs Jounce", color='blue')  # initial plot
-ax.set_xlabel('jounce (s)')
-ax.set_ylabel('kingpin (m)')
+# # Create a Matplotlib chart for visualization
+# f, ax = plt.subplots(tight_layout=True)
+# ax.plot(wheel_variables["wheel_jounce"], wheel_variables["kingpin_angle"], label="Kingpin vs Jounce", color='blue')  # initial plot
+# ax.set_xlabel('jounce (s)')
+# ax.set_ylabel('kingpin (m)')
 
-# Create the PyVista chart and add it to the plotter
-h_chart = pv.ChartMPL(f, size=(0.46, 0.25), loc=(0.02, 0.06))
-h_chart.background_color = (1.0, 1.0, 1.0, 0.4)
-plotter.add_chart(h_chart)
+# # Create the PyVista chart and add it to the plotter
+# h_chart = pv.ChartMPL(f, size=(0.46, 0.25), loc=(0.02, 0.06))
+# h_chart.background_color = (1.0, 1.0, 1.0, 0.4)
+# plotter.add_chart(h_chart)
 
-# Create and add the second 2D chart
-v_chart = pv.Chart2D(
-    size=(0.46, 0.25), loc=(0.52, 0.06), x_label="Time (s)", y_label="Velocity (m/s)"
-)
-plotter.add_chart(v_chart)
+# # Create and add the second 2D chart
+# v_chart = pv.Chart2D(
+#     size=(0.46, 0.25), loc=(0.52, 0.06), x_label="Time (s)", y_label="Velocity (m/s)"
+# )
+# plotter.add_chart(v_chart)
 
-# Show the plot
-plotter.show()
+# # Show the plot
+# plotter.show()
 
 
 

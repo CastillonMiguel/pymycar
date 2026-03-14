@@ -181,39 +181,39 @@ plt.show()
 
 
 
-last_meshes = []
-def plot_frame(plotter, data, index=None):
-    global last_meshes
+# last_meshes = []
+# def plot_frame(plotter, data, index=None):
+#     global last_meshes
 
-    if index is None:
-        index = data["index_reference"]
+#     if index is None:
+#         index = data["index_reference"]
 
-    upper_control_arm, lower_control_arm, direction, wheel_center1, spring_o = whisbone_cad_configuration_1(data,index)
-    wheel = wheel_cad(data, wheel_variables, index)
+#     upper_control_arm, lower_control_arm, direction, wheel_center1, spring_o = whisbone_cad_configuration_1(data,index)
+#     wheel = wheel_cad(data, wheel_variables, index)
     
-    # Remove the last meshes
-    for mesh in last_meshes:
-        plotter.remove_actor(mesh)
+#     # Remove the last meshes
+#     for mesh in last_meshes:
+#         plotter.remove_actor(mesh)
 
-    # Add new meshes
-    last_meshes = [
+#     # Add new meshes
+#     last_meshes = [
 
-        plotter.add_mesh(wheel_center1, color="black"),
-        plotter.add_mesh(upper_control_arm, color="blue"),
-        plotter.add_mesh(lower_control_arm, color="pink"),
-        plotter.add_mesh(direction, color="green"),
-        plotter.add_mesh(wheel, color="black", opacity=0.5),
-        plotter.add_mesh(spring_o, color="red")
-    ]
+#         plotter.add_mesh(wheel_center1, color="black"),
+#         plotter.add_mesh(upper_control_arm, color="blue"),
+#         plotter.add_mesh(lower_control_arm, color="pink"),
+#         plotter.add_mesh(direction, color="green"),
+#         plotter.add_mesh(wheel, color="black", opacity=0.5),
+#         plotter.add_mesh(spring_o, color="red")
+#     ]
 
 
-plotter = pv.Plotter()
-def create_mesh(value):
-    res = np.abs(solution["wheel_center"][:,2] - value).argmin()
-    plot_frame(plotter, solution, index=res)
+# plotter = pv.Plotter()
+# def create_mesh(value):
+#     res = np.abs(solution["wheel_center"][:,2] - value).argmin()
+#     plot_frame(plotter, solution, index=res)
 
-plotter.add_slider_widget(create_mesh,
-                          rng=[solution["wheel_center"][0, 2], solution["wheel_center"][-1, 2]],
-                          value=solution["wheel_center"][solution["index_reference"]][2],
-                          title='Jounce')
-plotter.show()
+# plotter.add_slider_widget(create_mesh,
+#                           rng=[solution["wheel_center"][0, 2], solution["wheel_center"][-1, 2]],
+#                           value=solution["wheel_center"][solution["index_reference"]][2],
+#                           title='Jounce')
+# plotter.show()
