@@ -139,9 +139,11 @@ sphinx_gallery_conf = {
     # Sort gallery example by file name instead of number of lines (default)
     "within_subsection_order": FileNameSortKey,
     "subsection_order": ExplicitOrder([
-        '../../examples/Cad',
-        '../../examples/SuspensionKinematics',
+        '../../examples/CadCar',
+        '../../examples/CarKinematics',
         '../../examples/VerticalModels',
+        # '../../examples/CadMotorcycle',
+        # '../../examples/MotorcycleKinematics',
     ]),
     # directory where function granular galleries are stored
     "backreferences_dir": None,

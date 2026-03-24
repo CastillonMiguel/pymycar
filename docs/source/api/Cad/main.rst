@@ -9,27 +9,37 @@ Geometric geometric_forms
    :show-inheritance:
 
 
-Chassis
--------
-.. automodule:: pymycar.Cad.Chassis.formula
+Car
+---
+.. automodule:: pymycar.Cad.Car.frame
    :members:
    :undoc-members:
    :show-inheritance:
 
-.. automodule:: pymycar.Cad.Chassis.tourist
+.. automodule:: pymycar.Cad.Car.double_whisbone
    :members:
    :undoc-members:
    :show-inheritance:
 
-Suspension
+.. automodule:: pymycar.Cad.Car.multilink
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+
+Motorcycle
 ----------
-.. automodule:: pymycar.Cad.Suspension.double_whisbone
+.. automodule:: pymycar.Cad.MotorCycle.frame
    :members:
    :undoc-members:
    :show-inheritance:
 
-.. automodule:: pymycar.Cad.Chassis.tourist
+.. automodule:: pymycar.Cad.MotorCycle.front_assembly
    :members:
    :undoc-members:
    :show-inheritance:
-   
+
+.. automodule:: pymycar.Cad.MotorCycle.rear_assembly
+   :members:
+   :undoc-members:
+   :show-inheritance:

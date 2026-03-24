@@ -73,7 +73,7 @@ def simple_tube(point_a, point_b, radius=5, resolution=100, n_sides=10):
     point_b : array-like
         Coordinates of the second point of the tube.
     radius : float, optional
-        Radius of the Tube, by default 10.
+        Radius of the Tube, by default 5.
     resolution : int, optional
         Resolution of the Tube, by default 100.
     n_sides : int, optional
@@ -86,7 +86,7 @@ def simple_tube(point_a, point_b, radius=5, resolution=100, n_sides=10):
 
     Notes
     -----
-    The simple tube is formed by a single Tube connecting the inner and outer points.
+    The simple tube is formed by a single Tube connecting point_a and point_b.
 
     Examples
     --------
@@ -166,11 +166,11 @@ def cylinder_from_two_points(center, point_a, point_b, height, radius):
         Cylinder mesh.
     """
 
-    point_a = np.asarray(point_a)
-    point_b = np.asarray(point_b)
-
     direction = point_b - point_a
-    direction = direction / np.linalg.norm(direction)
+    norm = np.linalg.norm(direction)
+    if norm == 0:
+        raise ValueError("point_a and point_b cannot be the same point (direction length is zero).")
+    direction = direction / norm
 
     cylinder = pv.Cylinder(
         center=center,
@@ -178,7 +178,6 @@ def cylinder_from_two_points(center, point_a, point_b, height, radius):
         height=height,
         radius=radius
     )
-
     return pv.MultiBlock([cylinder])
 
 def simple_sphere(center, radius):
@@ -293,9 +292,10 @@ def spring_old(point_a, point_b, radius=10, coil_radius=10, n_coils=1, n_points=
     p3 = pv.Sphere(radius=radius, center=[0,0,0])
     
     # Calculate the direction and length of the spring
-    direction = point_b - point_a
-    direction = direction[0]
+    direction = np.array(point_b) - np.array(point_a)
     length = np.linalg.norm(direction)
+    if length == 0:
+        raise ValueError("point_a and point_b cannot be the same point (zero length direction).")
     direction = direction.astype(float) / length
     
     # Calculate a perpendicular direction
@@ -324,7 +324,7 @@ def spring_old(point_a, point_b, radius=10, coil_radius=10, n_coils=1, n_points=
         rotation_axis=direction
     )
 
-    return pv.MultiBlock([p1, p3, extruded])
+    return pv.MultiBlock([p1, p2, p3, extruded])
 
 def rocked(pivot, point_a, point_b):
     """

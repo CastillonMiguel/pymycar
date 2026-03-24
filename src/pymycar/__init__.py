@@ -10,7 +10,8 @@ __url__ = "https://github.com/CastillonMiguel/pymycar"
 # Import submodules to be included in the package namespace
 from .Cad import *
 from .Logger import *
-from .SuspensionKinematic import *
+# from .MotorCycleKinematic import *
+from .CarKinematic import *
 from .Vehicle import *
 from .VerticalModels import *
 from .files import *
@@ -20,8 +21,9 @@ from .files import *
 __all__ = [
     'Cad',
     'Logger',
-    'SuspensionKinematic',
+    # 'MotorCycleKinematic',
+    'CarKinematic',
     'Vehicle',
     'VerticalModels',
-    'files'
+    'files',
 ]
