@@ -257,6 +257,90 @@ def spring(point_a, point_b, radius=5):
     p2 = simple_sphere(point_b, radius)
     return pv.MultiBlock([p1, p2, simple_tube(point_a, point_b)])
 
+def simple_spring(point_a, point_b, radius=5, n_coils=10, spring_radius=15, n_points=500):
+    """
+    Generate a spring with a defined number of coils spiraling around a line.
+
+    Parameters
+    ----------
+    point_a : array-like
+        Coordinates of the upper mounting point of the spring.
+    point_b : array-like
+        Coordinates of the lower mounting point of the spring.
+    radius : float, optional
+        Radius of the wire Tube and mounting Spheres, by default 5.
+    n_coils : int, optional
+        Number of complete spiral coils, by default 10.
+    spring_radius : float, optional
+        The radius of the spiral itself, by default 15.
+    n_points : int, optional
+        The resolution (number of points) used to draw the spiral, by default 500.
+
+    Returns
+    -------
+    pv.MultiBlock
+        MultiBlock containing two Spheres and a spiral Tube representing the spring.
+
+    Notes
+    -----
+    The spring is formed by two Spheres at the upper and lower mounting points
+    and a spiral Tube generated as a parametric spline connecting them.
+
+    Examples
+    --------
+    Create a spring structure mapping between two coordinates and show it using PyVista.
+
+    >>> import numpy as np
+    >>> import pyvista as pv
+    >>> from pymycar.Cad.geometric_forms import simple_spring
+    >>> d = simple_spring(np.array([831.7, -278.7, 251.2]), np.array([849.2, -419.1, 76.4]), radius=5, n_coils=10, spring_radius=20)
+    >>> plotter = pv.Plotter()
+    >>> plotter.add_mesh(d, color='purple', name="Spring")
+    >>> plotter.add_title("Spring Structure")
+    >>> plotter.show()
+    """
+
+    point_a = np.array(point_a, dtype=float).flatten()
+    point_b = np.array(point_b, dtype=float).flatten()
+
+    # 1) Calculate direction and length
+    direction = point_b - point_a
+    length = np.linalg.norm(direction)
+    if length == 0:
+        raise ValueError("point_a and point_b cannot be the same point (zero length direction).")
+    direction = direction / length
+
+    # 2) Parametric equations for a spiral along the Z-axis
+    t = np.linspace(0, 1, n_points)
+    x = spring_radius * np.cos(2 * np.pi * n_coils * t)
+    y = spring_radius * np.sin(2 * np.pi * n_coils * t)
+    z = length * t
+    points_z = np.column_stack((x, y, z))
+
+    # 3) Create a spline through the points and convert to a tube
+    spline = pv.Spline(points_z)
+    tube = spline.tube(radius=radius)
+
+    # 4) Calculate rotation from Z-axis to the desired direction
+    z_axis = np.array([0.0, 0.0, 1.0])
+    if np.allclose(direction, z_axis):
+        pass # No rotation necessary
+    elif np.allclose(direction, -z_axis):
+        tube.rotate_vector([1.0, 0.0, 0.0], 180.0, inplace=True)
+    else:
+        rot_axis = np.cross(z_axis, direction)
+        rot_angle = np.degrees(np.arccos(np.clip(np.dot(z_axis, direction), -1.0, 1.0)))
+        tube.rotate_vector(rot_axis, rot_angle, inplace=True)
+
+    # 5) Translate the tube to start at point_a
+    tube.translate(point_a, inplace=True)
+
+    # 6) Generate end spheres
+    p1 = simple_sphere(point_a, radius * 1.5)
+    p2 = simple_sphere(point_b, radius * 1.5)
+
+    return pv.MultiBlock([p1, p2, tube])
+
 def spring_old(point_a, point_b, radius=10, coil_radius=10, n_coils=1, n_points=1000):
     """
     Generate a spring.

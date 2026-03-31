@@ -8,7 +8,7 @@ system components such as control arms, wheel, springs, and other suspension par
 
 """
 
-from pymycar.Cad.geometric_forms import control_arm, simple_tube, simple_sphere, spring, rocked
+from pymycar.Cad.geometric_forms import control_arm, simple_tube, simple_sphere, spring, rocked, simple_spring
 
 def whisbone_cad_base(data, index=None):
     """
@@ -85,7 +85,7 @@ def whisbone_cad_base(data, index=None):
 
     >>> import numpy as np
     >>> import pyvista as pv
-    >>> from pymycar.Cad.Suspension.double_whisbone import whisbone_cad_base
+    >>> from pymycar.Cad.Car.double_whisbone import whisbone_cad_base
 
     Define the suspension geometry points.
     
@@ -206,7 +206,7 @@ def whisbone_cad_configuration_1(data, index=None):
 
     >>> import numpy as np
     >>> import pyvista as pv
-    >>> from pymycar.Cad.Suspension.double_whisbone import whisbone_cad_configuration_1
+    >>> from pymycar.Cad.Car.double_whisbone import whisbone_cad_configuration_1
 
     Define the suspension geometry points.
 
@@ -339,7 +339,7 @@ def whisbone_cad_configuration_2(data, index=None):
 
     >>> import numpy as np
     >>> import pyvista as pv
-    >>> from pymycar.Cad.Suspension.double_whisbone import whisbone_cad_configuration_2
+    >>> from pymycar.Cad.Car.double_whisbone import whisbone_cad_configuration_2
 
     Define the suspension geometry points.
 
@@ -386,5 +386,5 @@ def whisbone_cad_configuration_2(data, index=None):
     upper_control_arm, lower_control_arm, direction, wheel_center = whisbone_cad_base(data, index)
     rocked_o = rocked(data["ROCKED_PIVOT"], data["l_spring_mount"][index], data["push_rod_inner"][index])
     push_rod = simple_tube(data["push_rod_inner"][index], data["push_rod_outer"][index])
-    spring_o = spring(data["U_SPRING_MOUNT"], data["l_spring_mount"][index])
+    spring_o = simple_spring(data["U_SPRING_MOUNT"], data["l_spring_mount"][index])
     return upper_control_arm, lower_control_arm, direction, wheel_center, spring_o, push_rod, rocked_o

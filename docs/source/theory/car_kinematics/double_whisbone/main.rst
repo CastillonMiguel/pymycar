@@ -28,7 +28,7 @@ Configuration: Base
 -------------------
 
 .. note::
-    For further details on the CAD example representation of the double wishbone suspension, see the function :py:func:`pymycar.Cad.Suspension.double_whisbone.whisbone_cad_base`.
+    For further details on the CAD example representation of the double wishbone suspension, see the function :py:func:`pymycar.Cad.Car.double_whisbone.whisbone_cad_base`.
 
 The base system of the Double Wishbone suspension is defined using 9 points, as presented in :ref:`table_points_description_doble_whisbone_base`. Of these, 5 points represent the vehicle chassis and are considered fixed, as the kinematic analysis is relative to these coordinates.
 
@@ -106,7 +106,7 @@ Configuration: 1
 ----------------
 
 .. note::
-    For further details on the CAD example representation of the double wishbone suspension, see the function :py:func:`pymycar.Cad.Suspension.double_whisbone.whisbone_cad_configuration_1`.
+    For further details on the CAD example representation of the double wishbone suspension, see the function :py:func:`pymycar.Cad.Car.double_whisbone.whisbone_cad_configuration_1`.
 
 In this configuration, the spring-damper assembly, is introduced. The lower point of the suspension (*l spring mount*) is connected to the lower wishbone. The other end (*U SPRING MOUNT*) is connected directly to the vehicle chassis.
 
@@ -195,7 +195,7 @@ Configuration: 2
 ----------------
 
 .. note::
-    For further details on the CAD example representation of the double wishbone suspension, see the function :py:func:`pymycar.Cad.Suspension.double_whisbone.whisbone_cad_configuration_2`.
+    For further details on the CAD example representation of the double wishbone suspension, see the function :py:func:`pymycar.Cad.Car.double_whisbone.whisbone_cad_configuration_2`.
 
 In this configuration, the suspension is connected to a rocker that is actuated by a rod, which has its other end connected to the upper wishbone of the system.
 

@@ -142,8 +142,8 @@ sphinx_gallery_conf = {
         '../../examples/CadCar',
         '../../examples/CarKinematics',
         '../../examples/VerticalModels',
-        # '../../examples/CadMotorcycle',
-        # '../../examples/MotorcycleKinematics',
+        '../../examples/CadMotorcycle',
+        '../../examples/MotorcycleKinematics',
     ]),
     # directory where function granular galleries are stored
     "backreferences_dir": None,

@@ -21,7 +21,7 @@ Configuration: Base
 -------------------
 
 .. note::
-    For an interactive visualization of the suspension, view the CAD example representation: :ref:`ref_cadsuspension_multilink_base`.
+    For an interactive visualization of the suspension, see the function :py:func:`pymycar.Cad.Car.multilink.multilink_cad_base`.
 
 The base system of the Double Wishbone suspension is defined using 11 points, as presented in :ref:`table_points_description_multilink_base`. Of these, 6 points represent the vehicle chassis and are considered fixed, as the kinematic analysis is relative to these coordinates.
 
@@ -115,7 +115,7 @@ Configuration: 1
 ----------------
 
 .. note::
-    For an interactive visualization of the suspension, view the CAD example representation: :ref:`ref_cad_suspension_multilink_configuration_1`.
+    For an interactive visualization of the suspension, see the function :py:func:`pymycar.Cad.Car.multilink.multilink_cad_configuration_1`.
 
 In this configuration, the spring-damper assembly is introduced. The lower point of the suspension (*l spring mount*) is connected to the knuckle. The other end (*U SPRING MOUNT*) is connected directly to the vehicle chassis.
 

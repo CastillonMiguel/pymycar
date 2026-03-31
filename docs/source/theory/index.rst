@@ -13,7 +13,7 @@ Welcome to the theory section. Originally, pymycar was developed as a tool for c
 
 5. **Car Suspension Kinematics** (:ref:`theory_suspensions_kinematics`): Here, the kinematic analysis focuses on car suspension systems, examining the kinematics of the wheels and the suspension. It covers double wishbone and multilink systems, and includes the analysis of variables such as wheelbase, camber, toe, etc.
    
-.. 6. **Motorcycle Kinematics** (:ref:`theory_motorcycle_kinematics`): This part focuses on the kinematic analysis of motorcycles, detailing the kinematics of the wheels and suspension system. It covers components like telescopic forks and single shock absorbers, and includes the analysis of variables such as wheelbase, camber, toe, etc.
+6. **Motorcycle Kinematics** (:ref:`theory_motorcycle_kinematics`): This part focuses on the kinematic analysis of motorcycles, detailing the kinematics of the wheels and suspension system. It covers components like telescopic forks and single shock absorbers, and includes the analysis of variables such as wheelbase, camber, toe, etc.
 
 .. toctree::
    :hidden:
@@ -23,4 +23,4 @@ Welcome to the theory section. Originally, pymycar was developed as a tool for c
    full_model/main
    kinematic/main
    car_kinematics/main
-   .. motorcycle_kinematics/main
+   motorcycle_kinematics/main
