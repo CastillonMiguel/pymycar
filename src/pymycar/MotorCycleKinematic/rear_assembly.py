@@ -40,7 +40,7 @@ def rear_bike_base(data,
     data : dict
         A dictionary containing the initial measurements and reference points for the suspension system.
         Expected keys include:
-            - 'wheel_center': The initial wheel center position.
+            - 'wheel_center_rear': The initial wheel center position.
             - 'uca_outer': The outer UCA (Upper Control Arm) position.
             - 'UCA_FRONT': The front reference point for the UCA.
             - 'UCA_REAR': The rear reference point for the UCA.

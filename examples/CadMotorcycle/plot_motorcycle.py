@@ -21,7 +21,7 @@ import numpy as np
 import pyvista as pv
 
 from pymycar.Cad.MotorCycle.front_assembly import fork_front_suspension
-from pymycar.Cad.MotorCycle.rear_assembly import swinarm_cad_base, rear_suspension_cantilever
+from pymycar.Cad.MotorCycle.rear_assembly import swingarm_cad_base, rear_suspension_cantilever
 from pymycar.Cad.MotorCycle.frame import frame_cad_base
 from pymycar.Cad.MotorCycle.wheel import motorcycle_wheel
 
@@ -67,7 +67,7 @@ ringradius_rear = 330.0  # Example ring radius for the wheel
 crosssectionradius_rear = 105.0  # Example cross-section radius for the wheel
 wheel_rear = motorcycle_wheel(data["wheel_center_rear"], data["SA_RIGHT"], data["SA_LEFT"], ringradius_rear, crosssectionradius_rear)
 # pv.Cylinder(center=data["wheel_center_rear"], direction=(0, 1, 0), height=50, radius=200)
-swingarm = swinarm_cad_base(data, index=None)
+swingarm = swingarm_cad_base(data, index=None)
 rear_suspension = rear_suspension_cantilever(data, index=None)
 
 # --- Frame ---

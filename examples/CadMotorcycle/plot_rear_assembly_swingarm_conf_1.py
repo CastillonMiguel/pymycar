@@ -54,7 +54,7 @@ import numpy as np
 from pymycar.Cad.geometric_forms import simple_spring
 import pyvista as pv
 
-from pymycar.Cad.MotorCycle.rear_assembly import swinarm_cad_base
+from pymycar.Cad.MotorCycle.rear_assembly import swingarm_cad_base
 from pymycar.Cad.MotorCycle.frame import frame_cad_base
 from pymycar.Cad.MotorCycle.rear_assembly import rear_suspension_cantilever
 from pymycar.Cad.MotorCycle.front_assembly import fork_front_suspension
@@ -70,7 +70,7 @@ data = {
 }
 
 
-swingarm = swinarm_cad_base(data, index=None)
+swingarm = swingarm_cad_base(data, index=None)
 wheel = pv.Cylinder(center=data["wheel_center"], direction=(0, 1, 0), height=50, radius=200)
 suspension = rear_suspension_cantilever(data, index=None)
 

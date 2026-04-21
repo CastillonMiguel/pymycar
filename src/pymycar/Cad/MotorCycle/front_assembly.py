@@ -35,7 +35,7 @@ def fork_front_suspension_steer(data, index=None):
         #  fork_left_bottom  *         * fork_right_middle 
         #                      \       |  
         #                       \      |
-        #           wheel_center *     |
+        #     wheel_center_front *     |
         #                          \   |   
         #                            \ |
         #                              *fork_right_bottom
@@ -46,7 +46,7 @@ def fork_front_suspension_steer(data, index=None):
     +-------------------------+----------------------------------+--------+
     | Points Name             | Description                      | Type   |
     +=========================+==================================+========+
-    | wheel_center            | Center of the Wheel              | mobile |
+    | wheel_center_front      | Center of the Wheel              | mobile |
     +-------------------------+----------------------------------+--------+
     | STEERING_AXIS_TOP       | Steering axis top point          | fixed  |
     +-------------------------+----------------------------------+--------+
@@ -92,7 +92,7 @@ def fork_front_suspension_steer(data, index=None):
     Define the suspension geometry points.
 
     >>> data = {
-    ...     "wheel_center": [np.array([1100.0,   0.0,     0.0])],
+    ...     "wheel_center_front": [np.array([1100.0,   0.0,     0.0])],
     ...     "STEERING_AXIS_TOP": np.array([900.0, 0.0, 600.0]),
     ...     "STEERING_AXIS_BOTTOM": np.array([1000.0, 0.0, 500.0]),
     ...     "fork_right_upper": [np.array([900.0, -200.0, 600.0])],
@@ -105,7 +105,7 @@ def fork_front_suspension_steer(data, index=None):
     
     Generate the CAD elements and a representation of the wheel.
 
-    >>> wheel = pv.Cylinder(center=data["wheel_center"][0], direction=(0, 1, 0), height=50, radius=200)
+    >>> wheel = pv.Cylinder(center=data["wheel_center_front"][0], direction=(0, 1, 0), height=50, radius=200)
     >>> bar_right_top, bar_left_top, U_form, steer_axis = fork_front_suspension(data, 0)
     
     Initialize the plotter and add the generated meshes.
@@ -162,7 +162,7 @@ def fork_front_suspension(data, index=None):
         #  fork_left_bottom  *         * fork_right_middle 
         #                      \       |  
         #                       \      |
-        #           wheel_center *     |
+        #     wheel_center_front *     |
         #                          \   |   
         #                            \ |
         #                              *fork_right_bottom
@@ -173,7 +173,7 @@ def fork_front_suspension(data, index=None):
     +-------------------------+----------------------------------+--------+
     | Points Name             | Description                      | Type   |
     +=========================+==================================+========+
-    | wheel_center            | Center of the Wheel              | mobile |
+    | wheel_center_front      | Center of the Wheel              | mobile |
     +-------------------------+----------------------------------+--------+
     | STEERING_AXIS_TOP       | Steering axis top point          | fixed  |
     +-------------------------+----------------------------------+--------+
@@ -219,7 +219,7 @@ def fork_front_suspension(data, index=None):
     Define the suspension geometry points.
 
     >>> data = {
-    ...     "wheel_center": [np.array([1100.0,   0.0,     0.0])],
+    ...     "wheel_center_front": [np.array([1100.0,   0.0,     0.0])],
     ...     "STEERING_AXIS_TOP": np.array([900.0, 0.0, 600.0]),
     ...     "STEERING_AXIS_BOTTOM": np.array([1000.0, 0.0, 500.0]),
     ...     "fork_right_upper": [np.array([900.0, -200.0, 600.0])],
@@ -232,7 +232,7 @@ def fork_front_suspension(data, index=None):
     
     Generate the CAD elements and a representation of the wheel.
 
-    >>> wheel = pv.Cylinder(center=data["wheel_center"][0], direction=(0, 1, 0), height=50, radius=200)
+    >>> wheel = pv.Cylinder(center=data["wheel_center_front"][0], direction=(0, 1, 0), height=50, radius=200)
     >>> bar_right_top, bar_left_top, U_form, steer_axis = fork_front_suspension(data, 0)
     
     Initialize the plotter and add the generated meshes.

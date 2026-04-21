@@ -90,7 +90,7 @@ solution, wheel_variables = rear_bike_base(data,
 
 
 import pyvista as pv
-from pymycar.Cad.MotorCycle.rear_assembly import swinarm_cad_base
+from pymycar.Cad.MotorCycle.rear_assembly import swingarm_cad_base
 from pymycar.Cad.MotorCycle.frame import frame_cad_base
 
 
@@ -104,7 +104,7 @@ def plot_frame(plotter, data, index=None):
         index = data["index_reference"]
 
     # swingarm, wheel_center1 = swingarm_cad_base(data, index)
-    swingarm = swinarm_cad_base(data, index)
+    swingarm = swingarm_cad_base(data, index)
     # Remove the last meshes
     for mesh in last_meshes:
         plotter.remove_actor(mesh)

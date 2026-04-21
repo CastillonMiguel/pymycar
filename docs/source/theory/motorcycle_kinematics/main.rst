@@ -34,4 +34,4 @@ Additionally, the front and rear wheels are integrated into their respective ass
 
    wheels/main
    rear_assembly/main
-..    front_assembly/main
+   front_assembly/main

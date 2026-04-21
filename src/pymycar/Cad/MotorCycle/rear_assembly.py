@@ -7,7 +7,7 @@ import pyvista as pv
 from pymycar.Cad.geometric_forms import rectangle_U, control_arm, simple_tube, simple_sphere, spring, rocked, simple_spring, rocked
 
 
-def swinarm_cad_base(data, index=None):
+def swingarm_cad_base(data, index=None):
     """
     Generate a control arm.
 
@@ -59,7 +59,7 @@ def rear_suspension_cantilever(data, index=None):
         - upper_control_arm : pyvista.PolyData
         - lower_control_arm : pyvista.PolyData
         - direction : pyvista.PolyData
-        - wheel_center : pyvista.PolyData
+        - wheel_center_rear : pyvista.PolyData
         - spring_o : pyvista.PolyData
     """
     spring_o = simple_tube(data["U_SPRING_MOUNT"], data["l_spring_mount"][index])
@@ -84,7 +84,7 @@ def rear_suspension_new(data, index=None):
         - upper_control_arm : pyvista.PolyData
         - lower_control_arm : pyvista.PolyData
         - direction : pyvista.PolyData
-        - wheel_center : pyvista.PolyData
+        - wheel_center_rear : pyvista.PolyData
         - spring_o : pyvista.PolyData
     """
     spring_o = simple_spring(data["spring_mount_left"][index], data["spring_mount_right"][index])

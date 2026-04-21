@@ -1,6 +1,6 @@
 r"""
 
-.. _ref_cad_ex_motorbike_front_assembly_forkss:
+.. _ref_cad_motorbike_front_assembly_forks:
 
 Front Assembly: Front Suspension Forks Configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -34,7 +34,7 @@ Front Assembly: Front Suspension Forks Configuration
 +-------------------------+----------------------------------+--------+
 | Points Name             | Description                      | Type   |
 +=========================+==================================+========+
-| wheel_center            | Center of the Wheel              | mobile |
+| wheel_center_front      | Center of the Wheel              | mobile |
 +-------------------------+----------------------------------+--------+
 | STEERING_AXIS_TOP       | Steering axis top point          | fixed  |
 +-------------------------+----------------------------------+--------+
@@ -67,19 +67,19 @@ from pymycar.Cad.MotorCycle.front_assembly import fork_front_suspension
 # Parameters Definition
 # ---------------------
 data = {
-    "wheel_center": np.array([1100.0,   0.0,     0.0]),
+    "wheel_center_front": np.array([1100.0,   0.0,     0.0]),
     "STEERING_AXIS_TOP": np.array([900.0, 0.0, 600.0]),
     "STEERING_AXIS_BOTTOM": np.array([1000.0, 0.0, 500.0]),
     "fork_right_upper": np.array([900.0, -200.0, 600.0]),
     "fork_left_upper": np.array([900.0, 200.0, 600.0]),
-    "fork_right_middle": np.array([999.0, -200.0, 300.0]),
-    "fork_left_middle": np.array([999.0, 200.0, 300.0]),
+    # "fork_right_middle": np.array([999.0, -200.0, 300.0]),
+    # "fork_left_middle": np.array([999.0, 200.0, 300.0]),
     "fork_right_bottom": np.array([1100.0, -200.0, 0.0]),
     "fork_left_bottom": np.array([1100.0, 200.0, 0.0]),
 }
 
-wheel = pv.Cylinder(center=data["wheel_center"], direction=(0, 1, 0), height=50, radius=200)
-wheel = pv.ParametricTorus(ringradius=200, crosssectionradius=80).translate(data["wheel_center"]).rotate_x(90)
+wheel = pv.Cylinder(center=data["wheel_center_front"], direction=(0, 1, 0), height=50, radius=200)
+wheel = pv.ParametricTorus(ringradius=200, crosssectionradius=80).translate(data["wheel_center_front"]).rotate_x(90)
 
 bar_right_top,  U_form_upper, U_form_bottom = fork_front_suspension(data)
 
