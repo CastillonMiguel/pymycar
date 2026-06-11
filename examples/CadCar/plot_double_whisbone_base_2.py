@@ -102,7 +102,7 @@ data2 = {
     "lca_outer": np.array([934.8,  514.7, 47.9]),   
     "tierod_outer": np.array([1027.1,  513.7, 43.6]),
     "wheel_center": np.array([941.5,  580.2, 155.1]),
-    "wheel_center": np.array([941.5,  680.2, 155.1])
+    "wheel_center_axis": np.array([941.5,  680.2, 155.1])
 }
 
 

@@ -145,7 +145,7 @@ Again, the system has a single degree of freedom. Thus, a total of 14 constraint
     +-------------------+--------------------------+--------+
     | uca outer         | Upper Control Arm Outer  | mobile |
     +-------------------+--------------------------+--------+
-    | LCA FRONT        | Lower Control Arm Front  | fixed  |
+    | LCA FRONT         | Lower Control Arm Front  | fixed  |
     +-------------------+--------------------------+--------+
     | LCA REAR          | Lower Control Arm Rear   | fixed  |
     +-------------------+--------------------------+--------+
@@ -313,7 +313,7 @@ The equations 1 to 3 define the position of the connection point between the pus
     +---------+--------------------+-----------------+------------------+
     | 11      |                    | wheel center    | tierod outer     |
     +---------+--------------------+-----------------+------------------+
-    | 12       | Wheel Center axis  |wheel center axis| uca outer        |
+    | 12      | Wheel Center axis  |wheel center axis| uca outer        |
     +---------+--------------------+-----------------+------------------+
     | 13      |                    |wheel center axis| lca outer        |
     +---------+--------------------+-----------------+------------------+
