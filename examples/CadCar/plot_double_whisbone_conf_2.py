@@ -86,6 +86,7 @@ data = {
     "lca_outer": np.array([934.8, -514.7, 47.9]), 
     "tierod_outer": np.array([1027.1, -513.7, 43.6]),
     "wheel_center": np.array([941.5, -580.2, 155.1]),
+    "wheel_center_axis": np.array([941.5, -680.2, 155.1]),
     "push_rod_outer": np.array([901.0, -379.00, 250.0]),
     "push_rod_inner": np.array([901.0, -139.00, 441.0]),
     "l_spring_mount": np.array([901.0, -130.20, 451.0])
@@ -94,7 +95,7 @@ data = {
 
 
 
-upper_control_arm, lower_control_arm, direction, wheel_center, spring_o, push_rod, rocked_o =  whisbone_cad_configuration_2(data, None)
+upper_control_arm, lower_control_arm, direction, wheel_center, wheel_center_axis, spring_o, push_rod, rocked_o =  whisbone_cad_configuration_2(data, None)
 wheel = pv.Cylinder(center=data["wheel_center"], direction=(0, 1, 0), height=50, radius=200)
 
 plotter = pv.Plotter()
@@ -102,6 +103,7 @@ plotter.add_mesh(upper_control_arm, color="blue"),
 plotter.add_mesh(lower_control_arm, color="pink"),
 plotter.add_mesh(direction, color="green"),
 plotter.add_mesh(wheel_center, color="black"),
+plotter.add_mesh(wheel_center_axis, color="black", opacity=0.5),
 #plotter.add_mesh(wheel1, color="black"),
 plotter.add_mesh(spring_o, color="red"),
 plotter.add_mesh(push_rod, color="black"),

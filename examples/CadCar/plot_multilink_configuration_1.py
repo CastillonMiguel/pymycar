@@ -84,6 +84,7 @@ data = {
     "lca_outer": np.array([4687.4, -698.2, 927.5]),   
     "tierod_outer": np.array([4942.9, -719.8, 1038.2]),
     "wheel_center": np.array([4682.2, -766.1, 1047.4]),
+    "wheel_center_axis": np.array([4682.2, -866.1, 1047.4]),
     "U_SPRING_MOUNT": np.array([4797, -518.1, 1325]),
     "l_spring_mount": np.array([4789, -649.0, 968.7]),
     "uca_outer_aux": np.array([4840.7, -721.2, 1202.8]),   
@@ -93,7 +94,7 @@ data = {
 }
 
 
-upper_control_arm, lower_control_arm, upper_control_arm_aux, lower_control_arm_aux, direction, wheel_center1, spring_o = multilink_cad_configuration_1(data, None)
+upper_control_arm, lower_control_arm, upper_control_arm_aux, lower_control_arm_aux, direction, wheel_center1, wheel_axis1, spring_o = multilink_cad_configuration_1(data, None)
 wheel = pv.Cylinder(center=data["wheel_center"], direction=(0, 1, 0), height=50, radius=200)
 
 plotter = pv.Plotter()
@@ -104,6 +105,7 @@ plotter.add_mesh(lower_control_arm_aux, color="pink"),
 plotter.add_mesh(direction, color="green"),
 plotter.add_mesh(spring_o, color="red")
 plotter.add_mesh(wheel, color="black", opacity=0.5)
+plotter.add_mesh(wheel_axis1, color="black", opacity=0.5)
 
 # Add points to the plot
 for name, coord in data.items():

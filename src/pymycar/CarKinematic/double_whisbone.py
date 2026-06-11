@@ -149,6 +149,9 @@ def double_whisbone_base(data, max_height_increase, max_height_decrease, height_
             data["tierod_outer"] - data["uca_outer"],
             data["tierod_outer"] - data["lca_outer"],
             data["lca_outer"] - data["uca_outer"],
+            data["wheel_center_axis"] - data["uca_outer"],
+            data["wheel_center_axis"] - data["lca_outer"],
+            data["wheel_center_axis"] - data["tierod_outer"],
             data["wheel_center"] - data["uca_outer"],
             data["wheel_center"] - data["lca_outer"],
             data["wheel_center"] - data["tierod_outer"],
@@ -241,12 +244,21 @@ def double_whisbone_base(data, max_height_increase, max_height_decrease, height_
         J[10, 11] = -2 * (x[8] - x[11])
 
         # EQ11
-        J[11, 11] = -1
+        J[11, 6] = 2 * (x[6] - x[12])
+        J[11, 7] = 2 * (x[7] - x[13])
+        J[11, 8] = 2 * (x[8] - x[14])
+
+        J[11, 9] = -2 * (x[6] - x[12])
+        J[11, 10] = -2 * (x[7] - x[13])
+        J[11, 11] = -2 * (x[8] - x[14])
+
+        # EQ11
+        J[14, 14] = -1
         return J
     
     def residual(vars, wheel_center_z):
-        uca_outer, lca_outer, tierod_outer, wheel_center = vars[
-            0:3], vars[3:6], vars[6:9], vars[9:12]
+        uca_outer, lca_outer, tierod_outer, wheel_center_axis, wheel_center = vars[
+            0:3], vars[3:6], vars[6:9], vars[9:12], vars[12:15]
         diff = np.array([
             uca_outer - data["UCA_FRONT"],
             uca_outer - data["UCA_REAR"],
@@ -256,6 +268,9 @@ def double_whisbone_base(data, max_height_increase, max_height_decrease, height_
             tierod_outer - uca_outer,
             tierod_outer - lca_outer,
             lca_outer - uca_outer,
+            wheel_center_axis - uca_outer,
+            wheel_center_axis - lca_outer,
+            wheel_center_axis - tierod_outer,
             wheel_center - uca_outer,
             wheel_center - lca_outer,
             wheel_center - tierod_outer,
@@ -267,9 +282,10 @@ def double_whisbone_base(data, max_height_increase, max_height_decrease, height_
     initial_guess = [data["uca_outer"],
                      data["lca_outer"],
                      data["tierod_outer"],
+                     data["wheel_center_axis"],
                      data["wheel_center"]]
     
-    solution_save = solve(wheel, index, initial_guess, residual, jacobian=jacobian)
+    solution_save = solve(wheel, index, initial_guess, residual, jacobian=None)
 
     solution = {
         "UCA_FRONT": data["UCA_FRONT"],  
@@ -280,7 +296,8 @@ def double_whisbone_base(data, max_height_increase, max_height_decrease, height_
         "uca_outer": solution_save[:, 0:3],
         "lca_outer": solution_save[:, 3:6],
         "tierod_outer": solution_save[:, 6:9],
-        "wheel_center": solution_save[:, 9:12],
+        "wheel_center_axis": solution_save[:, 9:12],
+        "wheel_center": solution_save[:, 12:15],
         "index_reference": index
     }
     
@@ -424,6 +441,9 @@ def double_whisbone_configuration_1(data, max_height_increase, max_height_decrea
             data["tierod_outer"] - data["uca_outer"],
             data["tierod_outer"] - data["lca_outer"],
             data["lca_outer"] - data["uca_outer"],
+            data["wheel_center_axis"] - data["uca_outer"],
+            data["wheel_center_axis"] - data["lca_outer"],
+            data["wheel_center_axis"] - data["tierod_outer"],
             data["wheel_center"] - data["uca_outer"],
             data["wheel_center"] - data["lca_outer"],
             data["wheel_center"] - data["tierod_outer"],
@@ -437,8 +457,8 @@ def double_whisbone_configuration_1(data, max_height_increase, max_height_decrea
     L_squared = np.linalg.norm(get_L(), axis=1)**2
 
     def residual(vars, wheel_center_z):
-        uca_outer, lca_outer, tierod_outer, wheel_center, l_spring_mount = vars[
-            0:3], vars[3:6], vars[6:9], vars[9:12], vars[12:15]
+        uca_outer, lca_outer, tierod_outer, wheel_center_axis, wheel_center, l_spring_mount = vars[
+            0:3], vars[3:6], vars[6:9], vars[9:12], vars[12:15], vars[15:18]
         diff = np.array([
             uca_outer - data["UCA_FRONT"],
             uca_outer - data["UCA_REAR"],
@@ -448,6 +468,9 @@ def double_whisbone_configuration_1(data, max_height_increase, max_height_decrea
             tierod_outer - uca_outer,
             tierod_outer - lca_outer,
             lca_outer - uca_outer,
+            wheel_center_axis - uca_outer,
+            wheel_center_axis - lca_outer,
+            wheel_center_axis - tierod_outer,
             wheel_center - uca_outer,
             wheel_center - lca_outer,
             wheel_center - tierod_outer,
@@ -461,6 +484,7 @@ def double_whisbone_configuration_1(data, max_height_increase, max_height_decrea
     initial_guess = [data["uca_outer"],
                      data["lca_outer"],
                      data["tierod_outer"], 
+                     data["wheel_center_axis"],
                      data["wheel_center"], 
                      data["l_spring_mount"]]
     
@@ -476,8 +500,9 @@ def double_whisbone_configuration_1(data, max_height_increase, max_height_decrea
         "uca_outer": solution_save[:, 0:3],
         "lca_outer": solution_save[:, 3:6],
         "tierod_outer": solution_save[:, 6:9],
-        "wheel_center": solution_save[:, 9:12],
-        "l_spring_mount": solution_save[:, 12:15],
+        "wheel_center_axis": solution_save[:, 9:12],
+        "wheel_center": solution_save[:, 12:15],
+        "l_spring_mount": solution_save[:, 15:18],
         "index_reference": index
     }
 
@@ -643,6 +668,9 @@ def double_whisbone_configuration_2(data, max_height_increase, max_height_decrea
             data["tierod_outer"] - data["uca_outer"],
             data["tierod_outer"] - data["lca_outer"],
             data["lca_outer"] - data["uca_outer"],
+            data["wheel_center_axis"] - data["uca_outer"],
+            data["wheel_center_axis"] - data["lca_outer"],
+            data["wheel_center_axis"] - data["tierod_outer"],
             data["wheel_center"] - data["uca_outer"],
             data["wheel_center"] - data["lca_outer"],
             data["wheel_center"] - data["tierod_outer"],
@@ -666,9 +694,10 @@ def double_whisbone_configuration_2(data, max_height_increase, max_height_decrea
         lca_outer = vars[3:6]
         tierod_outer = vars[6:9]
         wheel_center = vars[9:12]
-        push_rod_outer = vars[12:15]
-        push_rod_inner = vars[15:18]
-        l_spring_mount = vars[18:21]
+        wheel_center_axis = vars[12:15]
+        push_rod_outer = vars[15:18]
+        push_rod_inner = vars[18:21]
+        l_spring_mount = vars[21:24]
         diff = np.array([
             uca_outer - data["UCA_FRONT"], 
             uca_outer - data["UCA_REAR"],  
@@ -678,6 +707,9 @@ def double_whisbone_configuration_2(data, max_height_increase, max_height_decrea
             tierod_outer - uca_outer,  
             tierod_outer - lca_outer, 
             lca_outer - uca_outer, 
+            wheel_center_axis - uca_outer,
+            wheel_center_axis - lca_outer,
+            wheel_center_axis - tierod_outer,
             wheel_center - uca_outer,  
             wheel_center - lca_outer,  
             wheel_center - tierod_outer,  
@@ -696,7 +728,7 @@ def double_whisbone_configuration_2(data, max_height_increase, max_height_decrea
         return np.append(F, np.array([-wheel_center[2] + wheel_center_z]))
 
     initial_guess = [data["uca_outer"], data["lca_outer"],
-                     data["tierod_outer"], data["wheel_center"],
+                     data["tierod_outer"], data["wheel_center_axis"], data["wheel_center"],
                      data["push_rod_outer"] , data["push_rod_inner"],
                      data["l_spring_mount"]]
     solution_save = solve(wheel, index, initial_guess, residual, jacobian=None)
@@ -713,10 +745,11 @@ def double_whisbone_configuration_2(data, max_height_increase, max_height_decrea
         "uca_outer": solution_save[:, 0:3],   
         "lca_outer": solution_save[:, 3:6],    
         "tierod_outer": solution_save[:, 6:9],  
-        "wheel_center": solution_save[:, 9:12], 
-        "push_rod_outer": solution_save[:, 12:15],
-        "push_rod_inner": solution_save[:, 15:18], 
-        "l_spring_mount": solution_save[:, 18:21], 
+        "wheel_center_axis": solution_save[:, 9:12], 
+        "wheel_center": solution_save[:, 12:15], 
+        "push_rod_outer": solution_save[:, 15:18],
+        "push_rod_inner": solution_save[:, 18:21], 
+        "l_spring_mount": solution_save[:, 21:24], 
         "index_reference": index
     }
 

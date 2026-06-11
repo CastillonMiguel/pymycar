@@ -94,7 +94,8 @@ def multilink_cad_base(data, index=None):
     
     direction = simple_tube(data["TIEROD_INNER"], data["tierod_outer"][index])
     wheel_center = simple_sphere(data["wheel_center"][index], 10)
-    return upper_control_arm, lower_control_arm, upper_control_arm_aux, lower_control_arm_aux, direction, wheel_center
+    wheel_axis = simple_tube(data["wheel_center"][index], data["wheel_center_axis"][index])
+    return upper_control_arm, lower_control_arm, upper_control_arm_aux, lower_control_arm_aux, direction, wheel_center, wheel_axis
 
 
 def multilink_cad_configuration_1(data, index=None):
@@ -177,6 +178,6 @@ def multilink_cad_configuration_1(data, index=None):
         - direction : pyvista.PolyData
         - wheel_center : pyvista.PolyData
     """
-    upper_control_arm, lower_control_arm, upper_control_arm_aux, lower_control_arm_aux, direction, wheel_center = multilink_cad_base(data, index)
+    upper_control_arm, lower_control_arm, upper_control_arm_aux, lower_control_arm_aux, direction, wheel_center, wheel_axis = multilink_cad_base(data, index)
     spring_o = spring(data["U_SPRING_MOUNT"], data["l_spring_mount"][index])
-    return upper_control_arm, lower_control_arm, upper_control_arm_aux, lower_control_arm_aux, direction, wheel_center, spring_o
+    return upper_control_arm, lower_control_arm, upper_control_arm_aux, lower_control_arm_aux, direction, wheel_center, wheel_axis, spring_o

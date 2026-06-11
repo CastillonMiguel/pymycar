@@ -45,27 +45,29 @@ The *TIEROD INNER* point refers to the steering system (or toe link in the case 
 
 .. table:: Points Defining the Base Wishbone Suspension
 
-   +-----------------+--------------------------+--------+
-   | Points  Name    | Description              | Type   |
-   +=================+==========================+========+
-   | wheel center    | Center of the Wheel      | mobile |
-   +-----------------+--------------------------+--------+
-   | UCA FRONT       | Upper Control Arm Front  | fixed  |
-   +-----------------+--------------------------+--------+
-   | UCA REAR        | Upper Control Arm Rear   | fixed  |
-   +-----------------+--------------------------+--------+
-   | uca outer       | Upper Control Arm Outer  | mobile |
-   +-----------------+--------------------------+--------+
-   | LCA FRONT       | Lower Control Arm Front  | fixed  |
-   +-----------------+--------------------------+--------+
-   | LCA REAR        | Lower Control Arm Rear   | fixed  |
-   +-----------------+--------------------------+--------+
-   | lca outer       | Lower Control Arm Outer  | mobile |
-   +-----------------+--------------------------+--------+
-   | TIEROD INNER    | Inner Tie Rod            | fixed  |
-   +-----------------+--------------------------+--------+
-   | tierod outer    | Outer Tie Rod            | mobile |
-   +-----------------+--------------------------+--------+
+   +-------------------+--------------------------+--------+
+   | Points  Name      | Description              | Type   |
+   +===================+==========================+========+
+   | wheel center      | Center of the Wheel      | mobile |
+   +-------------------+--------------------------+--------+
+   | wheel center axis | Wheel center axis        | mobile |
+   +-------------------+--------------------------+--------+
+   | UCA FRONT         | Upper Control Arm Front  | fixed  |
+   +-------------------+--------------------------+--------+
+   | UCA REAR          | Upper Control Arm Rear   | fixed  |
+   +-------------------+--------------------------+--------+
+   | uca outer         | Upper Control Arm Outer  | mobile |
+   +-------------------+--------------------------+--------+
+   | LCA FRONT         | Lower Control Arm Front  | fixed  |
+   +-------------------+--------------------------+--------+
+   | LCA REAR          | Lower Control Arm Rear   | fixed  |
+   +-------------------+--------------------------+--------+
+   | lca outer         | Lower Control Arm Outer  | mobile |
+   +-------------------+--------------------------+--------+
+   | TIEROD INNER      | Inner Tie Rod            | fixed  |
+   +-------------------+--------------------------+--------+
+   | tierod outer      | Outer Tie Rod            | mobile |
+   +-------------------+--------------------------+--------+
 
 The 11 constraint equations necessary to define the system are presented in table :ref:`table_constrains_equations_doble_whisbone_base`.
 
@@ -75,31 +77,37 @@ Note that all the constraint equations are based on the distance between two poi
 
 .. table:: Constraint Equations: Base Wishbone Suspension
 
-    +---------+--------------------+-----------------+-----------------+
-    |Equation | Part Definition    | Initial Point   | Final Point     |
-    +=========+====================+=================+=================+
-    | 1       | Upper Wishbone     | uca outer       | UCA FRONT       |
-    +---------+--------------------+-----------------+-----------------+
-    | 2       |                    | uca outer       | UCA REAR        |
-    +---------+--------------------+-----------------+-----------------+
-    | 3       | Lower Wishbone     | lca outer       | LCA FRONT       |
-    +---------+--------------------+-----------------+-----------------+
-    | 4       |                    | lca outer       | LCA REAR        |
-    +---------+--------------------+-----------------+-----------------+
-    | 5       | Tie Rod            | tierod outer    | TIEROD INNER    |
-    +---------+--------------------+-----------------+-----------------+
-    | 6       | Knuckle            | tierod outer    | uca outer       |
-    +---------+--------------------+-----------------+-----------------+
-    | 7       |                    | tierod outer    | lca outer       |
-    +---------+--------------------+-----------------+-----------------+
-    | 8       |                    | lca outer       | uca outer       |
-    +---------+--------------------+-----------------+-----------------+
-    | 9       | Wheel Center       | wheel center    | uca outer       |
-    +---------+--------------------+-----------------+-----------------+
-    | 10      |                    | wheel center    | lca outer       |
-    +---------+--------------------+-----------------+-----------------+
-    | 11      |                    | wheel center    | tierod outer    |
-    +---------+--------------------+-----------------+-----------------+
+    +---------+--------------------+-------------------+-----------------+
+    |Equation | Part Definition    | Initial Point     | Final Point     |
+    +=========+====================+===================+=================+
+    | 1       | Upper Wishbone     | uca outer         | UCA FRONT       |
+    +---------+--------------------+-------------------+-----------------+
+    | 2       |                    | uca outer         | UCA REAR        |
+    +---------+--------------------+-------------------+-----------------+
+    | 3       | Lower Wishbone     | lca outer         | LCA FRONT       |
+    +---------+--------------------+-------------------+-----------------+
+    | 4       |                    | lca outer         | LCA REAR        |
+    +---------+--------------------+-------------------+-----------------+
+    | 5       | Tie Rod            | tierod outer      | TIEROD INNER    |
+    +---------+--------------------+-------------------+-----------------+
+    | 6       | Knuckle            | tierod outer      | uca outer       |
+    +---------+--------------------+-------------------+-----------------+
+    | 7       |                    | tierod outer      | lca outer       |
+    +---------+--------------------+-------------------+-----------------+
+    | 8       |                    | lca outer         | uca outer       |
+    +---------+--------------------+-------------------+-----------------+
+    | 9       | Wheel Center Axis  | wheel center axis | uca outer       |
+    +---------+--------------------+-------------------+-----------------+
+    | 10      |                    | wheel center axis | lca outer       |
+    +---------+--------------------+-------------------+-----------------+
+    | 11      |                    | wheel center axis | tierod outer    |
+    +---------+--------------------+-------------------+-----------------+
+    | 12      | Wheel Center       | wheel center      | uca outer       |
+    +---------+--------------------+-------------------+-----------------+
+    | 13      |                    | wheel center      | lca outer       |
+    +---------+--------------------+-------------------+-----------------+
+    | 14      |                    | wheel center      | tierod outer    |
+    +---------+--------------------+-------------------+-----------------+
 
 
 Configuration: 1
@@ -124,33 +132,35 @@ Again, the system has a single degree of freedom. Thus, a total of 14 constraint
 
 .. table:: Points Defining the Wishbone Suspension Configuration 1
 
-    +-----------------+--------------------------+--------+
-    | Points  Name    | Description              | Type   |
-    +=================+==========================+========+
-    | wheel center    | Center of the Wheel      | mobile |
-    +-----------------+--------------------------+--------+
-    | UCA FRONT       | Upper Control Arm Front  | fixed  |
-    +-----------------+--------------------------+--------+
-    | UCA REAR        | Upper Control Arm Rear   | fixed  |
-    +-----------------+--------------------------+--------+
-    | uca outer       | Upper Control Arm Outer  | mobile |
-    +-----------------+--------------------------+--------+
-    | LCA FRONT       | Lower Control Arm Front  | fixed  |
-    +-----------------+--------------------------+--------+
-    | LCA REAR        | Lower Control Arm Rear   | fixed  |
-    +-----------------+--------------------------+--------+
-    | lca outer       | Lower Control Arm Outer  | mobile |
-    +-----------------+--------------------------+--------+
-    | TIEROD INNER    | Inner Tie Rod            | fixed  |
-    +-----------------+--------------------------+--------+
-    | tierod outer    | Outer Tie Rod            | mobile |
-    +-----------------+--------------------------+--------+
-    | U SPRING MOUNT  | Spring/damper            | fixed  |
-    |                 | Upper Mount              |        |
-    +-----------------+--------------------------+--------+
-    | l spring mount  | Spring/Damper            | mobile |
-    |                 | Lower Mount              |        |
-    +-----------------+--------------------------+--------+
+    +-------------------+--------------------------+--------+
+    | Points  Name      | Description              | Type   |
+    +===================+==========================+========+
+    | wheel center      | Center of the Wheel      | mobile |
+    +-------------------+--------------------------+--------+
+    | wheel center axis | Center of the Wheel      | mobile |
+    +-------------------+--------------------------+--------+
+    | UCA FRONT         | Upper Control Arm Front  | fixed  |
+    +-------------------+--------------------------+--------+
+    | UCA REAR          | Upper Control Arm Rear   | fixed  |
+    +-------------------+--------------------------+--------+
+    | uca outer         | Upper Control Arm Outer  | mobile |
+    +-------------------+--------------------------+--------+
+    | LCA FRONT        | Lower Control Arm Front  | fixed  |
+    +-------------------+--------------------------+--------+
+    | LCA REAR          | Lower Control Arm Rear   | fixed  |
+    +-------------------+--------------------------+--------+
+    | lca outer         | Lower Control Arm Outer  | mobile |
+    +-------------------+--------------------------+--------+
+    | TIEROD INNER      | Inner Tie Rod            | fixed  |
+    +-------------------+--------------------------+--------+
+    | tierod outer      | Outer Tie Rod            | mobile |
+    +-------------------+--------------------------+--------+
+    | U SPRING MOUNT    | Spring/damper            | fixed  |
+    |                   | Upper Mount              |        |
+    +-------------------+--------------------------+--------+
+    | l spring mount    | Spring/Damper            | mobile |
+    |                   | Lower Mount              |        |
+    +-------------------+--------------------------+--------+
 
 
 .. _table_constrains_equations_doble_whisbone_configuration_1:
@@ -176,18 +186,24 @@ Again, the system has a single degree of freedom. Thus, a total of 14 constraint
     +---------+--------------------+-----------------+-----------------+
     | 8       |                    | lca outer       | uca outer       |
     +---------+--------------------+-----------------+-----------------+
-    | 9       | Wheel Center       | wheel center    | uca outer       |
+    | 9       | Wheel Center axis  |wheel center axis| uca outer       |
     +---------+--------------------+-----------------+-----------------+
-    | 10      |                    | wheel center    | lca outer       |
+    | 10      |                    |wheel center axis| lca outer       |
     +---------+--------------------+-----------------+-----------------+
-    | 11      |                    | wheel center    | tierod outer    |
+    | 11      |                    |wheel center axis| tierod outer    |
     +---------+--------------------+-----------------+-----------------+
-    | 12      | Point Suspension   | l spring mount  | LCA FRONT       |
+    | 12       | Wheel Center      | wheel center    | uca outer       |
+    +---------+--------------------+-----------------+-----------------+
+    | 13      |                    | wheel center    | lca outer       |
+    +---------+--------------------+-----------------+-----------------+
+    | 14      |                    | wheel center    | tierod outer    |
+    +---------+--------------------+-----------------+-----------------+
+    | 15      | Point Suspension   | l spring mount  | LCA FRONT       |
     |         | Lower Wishbone     |                 |                 |
     +---------+--------------------+-----------------+-----------------+
-    | 13      |                    | l spring mount  | LCA REAR        |
+    | 16      |                    | l spring mount  | LCA REAR        |
     +---------+--------------------+-----------------+-----------------+
-    | 14      |                    | l spring mount  | lca outer       |
+    | 17      |                    | l spring mount  | lca outer       |
     +---------+--------------------+-----------------+-----------------+
  
 
@@ -229,6 +245,8 @@ A total of 20 constraint equations will be necessary, as there are 21 variables 
     | Points  Name    | Description              | Type   |
     +=================+==========================+========+
     | wheel center    | Center of the Wheel      | mobile |
+    +-----------------+--------------------------+--------+
+    |wheel center axis| wheel center axis        | mobile |
     +-----------------+--------------------------+--------+
     | UCA FRONT       | Upper Control Arm Front  | fixed  |
     +-----------------+--------------------------+--------+
@@ -295,21 +313,27 @@ The equations 1 to 3 define the position of the connection point between the pus
     +---------+--------------------+-----------------+------------------+
     | 11      |                    | wheel center    | tierod outer     |
     +---------+--------------------+-----------------+------------------+
-    | 12      | Pushrod point mount| pushrod outer   | UCA FRONT        |
+    | 12       | Wheel Center axis  |wheel center axis| uca outer        |
     +---------+--------------------+-----------------+------------------+
-    | 13      |                    | pushrod outer   | UCA REAR         |
+    | 13      |                    |wheel center axis| lca outer        |
     +---------+--------------------+-----------------+------------------+
-    | 14      |                    | pushrod outer   | uca outer        |
+    | 14      |                    |wheel center axis| tierod outer     |
     +---------+--------------------+-----------------+------------------+
-    | 15      | Constant distance  | pushrod inner   | pushrod outer    |
+    | 15      | Pushrod point mount| pushrod outer   | UCA FRONT        |
     +---------+--------------------+-----------------+------------------+
-    | 16      | Rocker             | pushrod inner   | ROCKER PIVOT     |
+    | 16      |                    | pushrod outer   | UCA REAR         |
     +---------+--------------------+-----------------+------------------+
-    | 17      |                    | pushrod inner   | ROCKER PIVOT AXIS|
+    | 17      |                    | pushrod outer   | uca outer        |
     +---------+--------------------+-----------------+------------------+
-    | 18      | Suspension Point   | l spring mount  | UCA FRONT        |
+    | 18      | Constant distance  | pushrod inner   | pushrod outer    |
     +---------+--------------------+-----------------+------------------+
-    | 19      |                    | l spring mount  | ROCKER PIVOT     |
+    | 19      | Rocker             | pushrod inner   | ROCKER PIVOT     |
     +---------+--------------------+-----------------+------------------+
-    | 20      |                    | l spring mount  | pushrod inner    |
+    | 20      |                    | pushrod inner   | ROCKER PIVOT AXIS|
+    +---------+--------------------+-----------------+------------------+
+    | 21      | Suspension Point   | l spring mount  | UCA FRONT        |
+    +---------+--------------------+-----------------+------------------+
+    | 22      |                    | l spring mount  | ROCKER PIVOT     |
+    +---------+--------------------+-----------------+------------------+
+    | 23      |                    | l spring mount  | pushrod inner    |
     +---------+--------------------+-----------------+------------------+

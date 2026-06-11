@@ -62,6 +62,80 @@ def control_arm(point_a, point_b, common_point, radius=10, resolution=100, n_sid
     return pv.MultiBlock([e1, e2])
 
 
+def dashed_tube(point_a, point_b, radius=5, n_dashes=10, duty_cycle=0.5):
+
+    """
+    Create a dashed tube between two points using multiple short tube segments.
+
+    Parameters
+    ----------
+    point_a : array-like
+    point_b : array-like
+    radius : float
+    n_dashes : int
+        Number of visible dash segments.
+    duty_cycle : float
+        Fraction of each dash period that is "on".
+    """
+
+    point_a = np.array(point_a)
+    point_b = np.array(point_b)
+    direction = point_b - point_a
+    length = np.linalg.norm(direction)
+    if length == 0:
+        raise ValueError("point_a and point_b cannot be the same point")
+
+    direction = direction / length
+    # total segments (on + off)
+    n_segments = n_dashes * 2
+    segments = []
+
+    for i in range(n_segments):
+        t0 = i / n_segments
+        t1 = (i + 1) / n_segments
+        # keep only "on" segments
+        if i % 2 == 0:
+            start = point_a + direction * length * t0
+            end = point_a + direction * length * t1
+            seg = pv.Tube(
+                pointa=start,
+                pointb=end,
+                radius=radius,
+                resolution=50,
+                n_sides=10
+            )
+            segments.append(seg)
+
+    return pv.MultiBlock(segments)
+
+def dashed_line(point_a, point_b, n_dashes=100):
+    """
+    Create a dashed 3D line between two points using line segments.
+    """
+    point_a = np.array(point_a)
+    point_b = np.array(point_b)
+    direction = point_b - point_a
+    length = np.linalg.norm(direction)
+
+    if length == 0:
+        raise ValueError("point_a and point_b cannot be the same point")
+
+    direction = direction / length
+    n_segments = n_dashes * 2  # on/off pattern
+    lines = []
+
+    for i in range(n_segments):
+        if i % 2 == 0:  # "on" segment
+            t0 = i / n_segments
+            t1 = (i + 1) / n_segments
+            p0 = point_a + direction * length * t0
+            p1 = point_a + direction * length * t1
+            line = pv.Line(p0, p1)
+            lines.append(line)
+
+    return pv.MultiBlock(lines)
+
+
 def simple_tube(point_a, point_b, radius=5, resolution=100, n_sides=10):
     """
     Generate a simple tube.

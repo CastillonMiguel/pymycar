@@ -42,6 +42,8 @@ The *TIEROD INNER* point refers to the steering system (or toe link in the case 
    +=================+==========================+========+
    | wheel center    | Center of the Wheel      | mobile |
    +-----------------+--------------------------+--------+
+   |wheel center axis| Wheel center axis        | mobile |
+   +-----------------+--------------------------+--------+
    | UCA FRONT       | Upper Control Arm Front  | fixed  |
    +-----------------+--------------------------+--------+
    | UCA REAR        | Upper Control Arm Rear   | fixed  |
@@ -104,11 +106,17 @@ Note that all the constraint equations are based on the distance between two poi
     +---------+--------------------+-----------------+-----------------+
     | 14      |                    | lca outer aux   | tierod outer    |
     +---------+--------------------+-----------------+-----------------+
-    | 15      |                    | wheel center    | uca outer       |
+    | 15      |                    |wheel center axis| uca outer       |
     +---------+--------------------+-----------------+-----------------+
-    | 16      |                    | wheel center    | lca outer       |
+    | 16      |                    |wheel center axis| lca outer       |
     +---------+--------------------+-----------------+-----------------+
-    | 17      |                    | wheel center    | tierod outer    |
+    | 17      |                    |wheel center axis| tierod outer    |
+    +---------+--------------------+-----------------+-----------------+
+    | 18      |                    | wheel center    | uca outer       |
+    +---------+--------------------+-----------------+-----------------+
+    | 19      |                    | wheel center    | lca outer       |
+    +---------+--------------------+-----------------+-----------------+
+    | 20      |                    | wheel center    | tierod outer    |
     +---------+--------------------+-----------------+-----------------+
 
 Configuration: 1
@@ -133,6 +141,8 @@ The system is defined by adding the equations that define the position of the co
    | Points  Name    | Description              | Type   |
    +=================+==========================+========+
    | wheel center    | Center of the Wheel      | mobile |
+   +-----------------+--------------------------+--------+
+   |wheel center axis| Wheel center axis        | mobile |
    +-----------------+--------------------------+--------+
    | UCA FRONT       | Upper Control Arm Front  | fixed  |
    +-----------------+--------------------------+--------+
@@ -196,18 +206,24 @@ The system is defined by adding the equations that define the position of the co
     +---------+--------------------+-----------------+-----------------+
     | 14      |                    | lca outer aux   | tierod outer    |
     +---------+--------------------+-----------------+-----------------+
-    | 15      |                    | wheel center    | uca outer       |
+    | 15      |                    |wheel center axis| uca outer       |
     +---------+--------------------+-----------------+-----------------+
-    | 16      |                    | wheel center    | lca outer       |
+    | 16      |                    |wheel center axis| lca outer       |
     +---------+--------------------+-----------------+-----------------+
-    | 17      |                    | wheel center    | tierod outer    |
+    | 17      |                    |wheel center axis| tierod outer    |
     +---------+--------------------+-----------------+-----------------+
-    | 18      |                    | Spring/Damper   | uca outer       |
+    | 18      |                    | wheel center    | uca outer       |
+    +---------+--------------------+-----------------+-----------------+
+    | 19      |                    | wheel center    | lca outer       |
+    +---------+--------------------+-----------------+-----------------+
+    | 20      |                    | wheel center    | tierod outer    |
+    +---------+--------------------+-----------------+-----------------+
+    | 21      |                    | Spring/Damper   | uca outer       |
     |         |                    | Lower Mount     |                 |
     +---------+--------------------+-----------------+-----------------+
-    | 19      |                    | Spring/Damper   | lca outer       |
+    | 22      |                    | Spring/Damper   | lca outer       |
     |         |                    | Lower Mount     |                 |
     +---------+--------------------+-----------------+-----------------+
-    | 20      |                    | Spring/Damper   | tierod outer    |
+    | 23      |                    | Spring/Damper   | tierod outer    |
     |         |                    | Lower Mount     |                 |
     +---------+--------------------+-----------------+-----------------+

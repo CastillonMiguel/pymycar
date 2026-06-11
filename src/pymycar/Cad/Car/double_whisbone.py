@@ -8,7 +8,7 @@ system components such as control arms, wheel, springs, and other suspension par
 
 """
 
-from pymycar.Cad.geometric_forms import control_arm, simple_tube, simple_sphere, spring, rocked, simple_spring
+from pymycar.Cad.geometric_forms import control_arm, simple_tube, simple_sphere, spring, rocked, simple_spring, dashed_line
 
 def whisbone_cad_base(data, index=None):
     """
@@ -28,9 +28,9 @@ def whisbone_cad_base(data, index=None):
        #    |       | uca_outer   /⁻\.
        #    |       |             ///
        #    |       |
-       #    |       |
-       #    |       |        tierod_outer
-       #    |       |       *--------------------*TIEROD_INNER
+       #    |   wheel_center
+       #  *-.-.-*   |        tierod_outer
+       # wheel_center_axis    *--------------------*TIEROD_INNER
        #    |       |
        #    |       |
        #    |       |       lca_outer
@@ -43,25 +43,29 @@ def whisbone_cad_base(data, index=None):
        #                     ///
        
     
-    +--------------+-------------------------------+
-    | Name         | Description                   | 
-    +==============+===============================+
-    | UCA_FRONT    | upper control arm front       | 
-    +--------------+-------------------------------+
-    | UCA_REAR     | upper control arm rear        | 
-    +--------------+-------------------------------+
-    | LCA_FRONT    | lower control arm front       | 
-    +--------------+-------------------------------+
-    | LCA_REAR     | lower control arm rear        | 
-    +--------------+-------------------------------+
-    | TIEROD_INNER | tierod inner                  | 
-    +--------------+-------------------------------+
-    | uca_outer    | upper control arm outer       |
-    +--------------+-------------------------------+
-    | lca_outer    | lower control arm outer       |  
-    +--------------+-------------------------------+
-    | tierod_outer | tierod outer                  |
-    +--------------+-------------------------------+
+    +-------------------+-------------------------------+
+    | Name              | Description                   | 
+    +===================+===============================+
+    | UCA_FRONT         | upper control arm front       | 
+    +-------------------+-------------------------------+
+    | UCA_REAR          | upper control arm rear        | 
+    +-------------------+-------------------------------+
+    | LCA_FRONT         | lower control arm front       | 
+    +-------------------+-------------------------------+
+    | LCA_REAR          | lower control arm rear        | 
+    +-------------------+-------------------------------+
+    | TIEROD_INNER      | tierod inner                  | 
+    +-------------------+-------------------------------+
+    | uca_outer         | upper control arm outer       |
+    +-------------------+-------------------------------+
+    | lca_outer         | lower control arm outer       |  
+    +-------------------+-------------------------------+
+    | tierod_outer      | tierod outer                  |
+    +-------------------+-------------------------------+
+    | wheel_center      | center of the wheel           |
+    +-------------------+-------------------------------+
+    | wheel_center_axis | axis of the wheel             |
+    +-------------------+-------------------------------+
 
     Parameters
     ----------
@@ -98,12 +102,13 @@ def whisbone_cad_base(data, index=None):
     ...     "uca_outer": [np.array([953.0, -474.2, 272.2])],
     ...     "lca_outer": [np.array([934.8, -514.7, 47.9])],
     ...     "tierod_outer": [np.array([1027.1, -513.7, 43.6])],
-    ...     "wheel_center": [np.array([941.5, -580.2, 155.1])]
+    ...     "wheel_center": [np.array([941.5, -580.2, 155.1])],
+    ...     "wheel_center_axis": [np.array([941.5, -680.2, 155.1])]
     ... }
 
     Generate the CAD elements and a representation of the wheel.
     
-    >>> upper_control_arm, lower_control_arm, direction, wheel_center1 = whisbone_cad_base(data, 0)
+    >>> upper_control_arm, lower_control_arm, direction, wheel_center, wheel_axis = whisbone_cad_base(data, 0)
     >>> wheel = pv.Cylinder(center=data["wheel_center"][0], direction=(0, 1, 0), height=50, radius=200)
 
     Initialize the plotter and add the generated meshes.
@@ -113,6 +118,7 @@ def whisbone_cad_base(data, index=None):
     >>> plotter.add_mesh(lower_control_arm, color="pink")
     >>> plotter.add_mesh(direction, color="green")
     >>> plotter.add_mesh(wheel, color="black", opacity=0.5)
+    >>> plotter.add_mesh(wheel_axis, color="gray", opacity=0.5)
     >>> for name, coord in data.items():
     ...     pts = coord[0] if isinstance(coord, list) else coord
     ...     plotter.add_mesh(pv.Sphere(radius=5, center=pts), color='red')
@@ -123,7 +129,8 @@ def whisbone_cad_base(data, index=None):
     lower_control_arm = control_arm(data["LCA_FRONT"], data["LCA_REAR"], data["lca_outer"][index])
     direction = simple_tube(data["TIEROD_INNER"], data["tierod_outer"][index])
     wheel_center = simple_sphere(data["wheel_center"][index], 10)
-    return upper_control_arm, lower_control_arm, direction, wheel_center
+    wheel_axis = dashed_line(data["wheel_center"][index], data["wheel_center_axis"][index])
+    return upper_control_arm, lower_control_arm, direction, wheel_center, wheel_axis
 
 
 def whisbone_cad_configuration_1(data, index=None):
@@ -220,13 +227,14 @@ def whisbone_cad_configuration_1(data, index=None):
     ...     "lca_outer": [np.array([934.8, -514.7, 47.9])],
     ...     "tierod_outer": [np.array([1027.1, -513.7, 43.6])],
     ...     "wheel_center": [np.array([941.5, -580.2, 155.1])],
+    ...     "wheel_center_axis": [np.array([941.5, -680.2, 155.1])],
     ...     "U_SPRING_MOUNT": np.array([831.7, -278.7, 251.2]),
     ...     "l_spring_mount": [np.array([849.2, -419.1, 76.4])]
     ... }
 
     Generate the CAD elements and a representation of the wheel.
 
-    >>> upper_control_arm, lower_control_arm, direction, wheel_center, spring_o = whisbone_cad_configuration_1(data, 0)
+    >>> upper_control_arm, lower_control_arm, direction, wheel_center, wheel_axis, spring_o = whisbone_cad_configuration_1(data, 0)
     >>> wheel = pv.Cylinder(center=data["wheel_center"][0], direction=(0, 1, 0), height=50, radius=200)
 
     Initialize the plotter and add the generated meshes.
@@ -236,6 +244,7 @@ def whisbone_cad_configuration_1(data, index=None):
     >>> plotter.add_mesh(lower_control_arm, color="pink")
     >>> plotter.add_mesh(direction, color="green")
     >>> plotter.add_mesh(wheel_center, color="black")
+    >>> plotter.add_mesh(wheel_axis, color="gray", opacity=0.5)
     >>> plotter.add_mesh(spring_o, color="red")
     >>> plotter.add_mesh(wheel, color="black", opacity=0.5)
     >>> for name, coord in data.items():
@@ -244,9 +253,9 @@ def whisbone_cad_configuration_1(data, index=None):
     ...     plotter.add_point_labels([pts], [name], point_size=20, font_size=30, text_color='black', always_visible=True)
     >>> plotter.show()
     """
-    upper_control_arm, lower_control_arm, direction, wheel_center = whisbone_cad_base(data, index)
+    upper_control_arm, lower_control_arm, direction, wheel_center, wheel_axis = whisbone_cad_base(data, index)
     spring_o = spring(data["U_SPRING_MOUNT"], data["l_spring_mount"][index])
-    return upper_control_arm, lower_control_arm, direction, wheel_center, spring_o  
+    return upper_control_arm, lower_control_arm, direction, wheel_center, wheel_axis, spring_o  
 
 
 def whisbone_cad_configuration_2(data, index=None):
@@ -356,6 +365,7 @@ def whisbone_cad_configuration_2(data, index=None):
     ...     "lca_outer": [np.array([934.8, -514.7, 47.9])], 
     ...     "tierod_outer": [np.array([1027.1, -513.7, 43.6])],
     ...     "wheel_center": [np.array([941.5, -580.2, 155.1])],
+    ...     "wheel_center_axis": [np.array([941.5, -680.2, 155.1])],
     ...     "push_rod_outer": [np.array([901.0, -379.00, 250.0])],
     ...     "push_rod_inner": [np.array([901.0, -139.00, 441.0])],
     ...     "l_spring_mount": [np.array([901.0, -130.20, 451.0])]
@@ -363,7 +373,7 @@ def whisbone_cad_configuration_2(data, index=None):
 
     Generate the CAD elements and a representation of the wheel.
 
-    >>> upper_control_arm, lower_control_arm, direction, wheel_center, spring_o, push_rod, rocked_o = whisbone_cad_configuration_2(data, 0)
+    >>> upper_control_arm, lower_control_arm, direction, wheel_center, wheel_axis, spring_o, push_rod, rocked_o = whisbone_cad_configuration_2(data, 0)
     >>> wheel = pv.Cylinder(center=data["wheel_center"][0], direction=(0, 1, 0), height=50, radius=200)
 
     Initialize the plotter and add the generated meshes.
@@ -373,6 +383,7 @@ def whisbone_cad_configuration_2(data, index=None):
     >>> plotter.add_mesh(lower_control_arm, color="pink")
     >>> plotter.add_mesh(direction, color="green")
     >>> plotter.add_mesh(wheel_center, color="black")
+    >>> plotter.add_mesh(wheel_axis, color="gray", opacity=0.5)
     >>> plotter.add_mesh(spring_o, color="red")
     >>> plotter.add_mesh(push_rod, color="black")
     >>> plotter.add_mesh(rocked_o, color="yellow")
@@ -383,8 +394,8 @@ def whisbone_cad_configuration_2(data, index=None):
     ...     plotter.add_point_labels([pts], [name], point_size=20, font_size=30, text_color='black', always_visible=True)
     >>> plotter.show()
     """
-    upper_control_arm, lower_control_arm, direction, wheel_center = whisbone_cad_base(data, index)
+    upper_control_arm, lower_control_arm, direction, wheel_center, wheel_axis = whisbone_cad_base(data, index)
     rocked_o = rocked(data["ROCKED_PIVOT"], data["l_spring_mount"][index], data["push_rod_inner"][index])
     push_rod = simple_tube(data["push_rod_inner"][index], data["push_rod_outer"][index])
     spring_o = simple_spring(data["U_SPRING_MOUNT"], data["l_spring_mount"][index])
-    return upper_control_arm, lower_control_arm, direction, wheel_center, spring_o, push_rod, rocked_o
+    return upper_control_arm, lower_control_arm, direction, wheel_center, wheel_axis, spring_o, push_rod, rocked_o

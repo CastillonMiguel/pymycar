@@ -162,9 +162,12 @@ def multilink(data, max_height_increase, max_height_decrease, height_step, save_
             data["lca_outer_aux"] - data["uca_outer"],     # 12
             data["lca_outer_aux"] - data["lca_outer"],     # 13
             data["lca_outer_aux"] - data["tierod_outer"],  # 14
-            data["wheel_center"] - data["uca_outer"],      # 15
-            data["wheel_center"] - data["lca_outer"],      # 16
-            data["wheel_center"] - data["tierod_outer"],   # 17
+            data["wheel_center_axis"] - data["uca_outer"],      # 15
+            data["wheel_center_axis"] - data["lca_outer"],      # 16
+            data["wheel_center_axis"] - data["tierod_outer"],   # 17
+            data["wheel_center"] - data["uca_outer"],      # 18
+            data["wheel_center"] - data["lca_outer"],      # 19
+            data["wheel_center"] - data["tierod_outer"],   # 20
         ])
 
         return L
@@ -172,8 +175,8 @@ def multilink(data, max_height_increase, max_height_decrease, height_step, save_
     L_squared = np.linalg.norm(get_L(), axis=1)**2
 
     def residual(vars, wheel_center_z):
-        uca_outer, lca_outer, tierod_outer, wheel_center = vars[0:3], vars[3:6], vars[6:9], vars[9:12]
-        uca_outer_aux, lca_outer_aux = vars[12:15], vars[15:18]
+        uca_outer, lca_outer, tierod_outer, wheel_center_axis, wheel_center = vars[0:3], vars[3:6], vars[6:9], vars[9:12], vars[12:15]
+        uca_outer_aux, lca_outer_aux = vars[15:18], vars[18:21]
         diff = np.array([
             uca_outer - data["UCA_FRONT"],         # 1
             uca_outer_aux - data["UCA_REAR"],      # 2
@@ -189,9 +192,12 @@ def multilink(data, max_height_increase, max_height_decrease, height_step, save_
             lca_outer_aux - uca_outer,             # 12
             lca_outer_aux - lca_outer,             # 13
             lca_outer_aux - tierod_outer,          # 14
-            wheel_center - uca_outer,              # 15
-            wheel_center - lca_outer,              # 16
-            wheel_center - tierod_outer,           # 17
+            wheel_center_axis - uca_outer,         # 15
+            wheel_center_axis - lca_outer,         # 16
+            wheel_center_axis - tierod_outer,      # 17
+            wheel_center - uca_outer,              # 18
+            wheel_center - lca_outer,              # 19
+            wheel_center - tierod_outer,           # 20
         ])
         F = np.linalg.norm(diff, axis=1)**2 - L_squared
 
@@ -201,6 +207,7 @@ def multilink(data, max_height_increase, max_height_decrease, height_step, save_
         data["uca_outer"],
         data["lca_outer"],
         data["tierod_outer"],
+        data["wheel_center_axis"],
         data["wheel_center"],
         data["uca_outer_aux"],
         data["lca_outer_aux"]
@@ -217,9 +224,10 @@ def multilink(data, max_height_increase, max_height_decrease, height_step, save_
         "uca_outer": solution_save[:, 0:3],  
         "lca_outer": solution_save[:, 3:6], 
         "tierod_outer": solution_save[:, 6:9],
-        "wheel_center": solution_save[:, 9:12],
-        "uca_outer_aux": solution_save[:, 12:15],
-        "lca_outer_aux": solution_save[:, 15:18],
+        "wheel_center_axis": solution_save[:, 9:12],
+        "wheel_center": solution_save[:, 12:15],
+        "uca_outer_aux": solution_save[:, 15:18],
+        "lca_outer_aux": solution_save[:, 18:21],
         "index_reference": index
     }
 

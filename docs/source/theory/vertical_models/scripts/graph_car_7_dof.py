@@ -11,7 +11,7 @@ import pyvista as pv
 # Import from pymycar package
 # ---------------------------
 from pymycar.Cad.Chassis.formula import model_A, model_B
-# from pymycar.Cad.Wheel import wheel_cad
+# from pymycar.Cad.Wheel import car_wheel
 import pymycar
 
 

@@ -81,11 +81,12 @@ data = {
     "uca_outer": np.array([953.0, -474.2, 272.2]),   
     "lca_outer": np.array([934.8, -514.7, 47.9]),   
     "tierod_outer": np.array([1027.1, -513.7, 43.6]),
-    "wheel_center": np.array([941.5, -580.2, 155.1])
+    "wheel_center": np.array([941.5, -580.2, 155.1]),
+    "wheel_center_axis": np.array([941.5, -680.2, 155.1])
 }
 
 
-upper_control_arm, lower_control_arm, direction, wheel_center1 = whisbone_cad_base(data, None)
+upper_control_arm, lower_control_arm, direction, wheel_center1, wheel_center_axis1 = whisbone_cad_base(data, None)
 wheel = pv.Cylinder(center=data["wheel_center"], direction=(0, 1, 0), height=50, radius=200)
 
 ###############################################################################
@@ -100,11 +101,12 @@ data2 = {
     "uca_outer": np.array([953.0,  474.2, 272.2]),   
     "lca_outer": np.array([934.8,  514.7, 47.9]),   
     "tierod_outer": np.array([1027.1,  513.7, 43.6]),
-    "wheel_center": np.array([941.5,  580.2, 155.1])
+    "wheel_center": np.array([941.5,  580.2, 155.1]),
+    "wheel_center": np.array([941.5,  680.2, 155.1])
 }
 
 
-upper_control_arm2, lower_control_arm2, direction2, wheel_center12 = whisbone_cad_base(data2, None)
+upper_control_arm2, lower_control_arm2, direction2, wheel_center12, wheel_center_axis2 = whisbone_cad_base(data2, None)
 wheel2 = pv.Cylinder(center=data2["wheel_center"], direction=(0, 1, 0), height=50, radius=200)
 
 plotter = pv.Plotter()

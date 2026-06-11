@@ -21,11 +21,11 @@ import pyvista as pv
 # Import from pymycar package
 # ---------------------------
 from pymycar.Cad.Chassis.formula import model_A, model_B
-# from pymycar.Cad.Wheel import wheel_cad
+# from pymycar.Cad.Wheel import car_wheel
 import pymycar
 
 
-# def wheel_cad(data, wheel_variables, index=None):
+# def car_wheel(data, wheel_variables, index=None):
 #     """
 #     Creates a 3D wheel model based on input data and orientation variables.
 
@@ -112,7 +112,7 @@ wheel_left_d  = pv.Cylinder(center=coorinate_left_wheel +diffl, direction=direct
 
 wheel_rear_right = pv.Cylinder(center=coorinate_rear_right_wheel, direction=direction_rear_right_wheel, height=300, radius=400)
 wheel_rear_left = pv.Cylinder(center=coorinate_rear_left_wheel, direction=direction_rear_left_wheel, height=300, radius=400)
-# wheel_right = wheel_cad(data, wheel_variables, index=None)
+# wheel_right = car_wheel(data, wheel_variables, index=None)
 
 chassis_tourist_A = pymycar.Cad.Chassis.tourist.model_A()
 

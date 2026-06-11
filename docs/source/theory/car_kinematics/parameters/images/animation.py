@@ -24,11 +24,11 @@ import time
 # Import from pymycar package
 # ---------------------------
 from pymycar.Cad.Car.frame import formula, model_B, model_C
-# from pymycar.Cad.Wheel import wheel_cad
+# from pymycar.Cad.Wheel import car_wheel
 import pymycar
 
 
-# def wheel_cad(data, wheel_variables, index=None):
+# def car_wheel(data, wheel_variables, index=None):
 #     """
 #     Creates a 3D wheel model based on input data and orientation variables.
 

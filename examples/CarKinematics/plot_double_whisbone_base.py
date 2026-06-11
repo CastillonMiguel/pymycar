@@ -77,7 +77,7 @@ import pyvista as pv
 # ---------------------------
 from pymycar.CarKinematic.double_whisbone import double_whisbone_base
 from pymycar.CarKinematic.functions import get_wheel
-from pymycar.Cad.Car.wheel import wheel_cad
+from pymycar.Cad.Car.wheel import car_wheel
 from pymycar.CarKinematic.suspension_files import load_defined_geometry
 from pymycar.Cad.Car.double_whisbone import whisbone_cad_base
 
@@ -93,7 +93,8 @@ data = {
     "uca_outer": np.array([953.0, -474.2, 272.2]),   
     "lca_outer": np.array([934.8, -514.7, 47.9]),   
     "tierod_outer": np.array([1027.1, -513.7, 43.6]),
-    "wheel_center": np.array([941.5, -580.2, 155.1])
+    "wheel_center": np.array([941.5, -580.2, 155.1]),
+    "wheel_center_axis": np.array([941.5, -680.2, 155.1])
 }
 
 
@@ -198,8 +199,8 @@ def plot_frame(plotter, data, index=None):
     if index is None:
         index = data["index_reference"]
 
-    upper_control_arm, lower_control_arm, direction, wheel_center1 = whisbone_cad_base(data,index)
-    wheel = wheel_cad(data, wheel_variables, index)
+    upper_control_arm, lower_control_arm, direction, wheel_center1, wheel_axis1 = whisbone_cad_base(data,index)
+    wheel = car_wheel(data, index)
     
     # Remove the last meshes
     for mesh in last_meshes:
@@ -212,7 +213,8 @@ def plot_frame(plotter, data, index=None):
         plotter.add_mesh(upper_control_arm, color="blue"),
         plotter.add_mesh(lower_control_arm, color="pink"),
         plotter.add_mesh(direction, color="green"),
-        plotter.add_mesh(wheel, color="black", opacity=0.5)
+        plotter.add_mesh(wheel, color="black", opacity=0.5),
+        plotter.add_mesh(wheel_axis1, color="black", opacity=0.5)
     ]
 
 
