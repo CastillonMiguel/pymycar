@@ -1,9 +1,11 @@
+.. _theory_Kinematics:
+
 Kinematics
 ==========
 
 Introduction
 ------------
-To study a kinematic analysis, the first step is to define the initial position of the system. This involves providing the initial coordinates of the wheel, wishbone, steering, and spring. Another important aspect is to impose the relationships between these elements by defining the suspension components through constraint equations.
+To perform a kinematic analysis, the first step is to define the initial position of the system. This involves providing the initial coordinates, for example, those relative to the wheel, frame, wishbone, steering, spring, among others, and a similar approach in the case of a motorcycle. Another important aspect is to establish the relationships between these elements by defining the suspension components through constraint equations. This section presents the theoretical approach used to derive the constraint equations in the models developed for analysing the relative motion of car suspension systems and motorcycles. Thus, it serves as a theoretical foundation for understanding these models.
 
 
 Natural Coordinates 
@@ -66,7 +68,7 @@ The constraint equations are as follows:
 
 Adding More Points
 ^^^^^^^^^^^^^^^^^^
-In some analyses, it may be useful to define a solid with more points. For instance, if a point \(P_4\) is added to the previously defined solid, there will be 12 natural coordinates, requiring 6 constraint equations. This involves adding 3 equations to define the constant distance of \(P_4\) with each of the previous points:
+In some analyses, it may be useful to define a solid with more points. For instance, if a point $P_4$ is added to the previously defined solid, there will be 12 natural coordinates, requiring 6 constraint equations. This involves adding 3 equations to define the constant distance of $P_4$ with each of the previous points:
 
 .. math::
 
@@ -109,22 +111,19 @@ Convention for Writing Proposals
 
 Aligned points
 ^^^^^^^^^^^^^^
-In some cases, it may be necessary to define a solid with three aligned points. This can lead to dependent equations, which may cause simulation errors. To address this issue, one can either define different constraint equations that account for the alignment or adjust one of the points slightly out of alignment. However, given the nature of suspension mechanisms, such cases are typically not a concern. If they do arise, the position of one point can be approximated slightly out of alignment to avoid simulation issues.
+In some cases, it may be necessary to define a rigid body using three aligned points. This can lead to dependent equations, which may cause numerical or simulation errors. To address this issue, one can either define alternative constraint equations that account for the alignment or slightly adjust one of the points to avoid perfect collinearity. However, given the nature of suspension mechanisms, such cases are typically not a concern. If they do arise, the position of one point can be slightly perturbed out of alignment to avoid simulation issues, or the constraint equations can be formulated in a way that accounts for the alignment, ensuring that the system remains stable during simulations.
 
+This issue particularly affects classical motorcycle fork suspension systems, where the direction of wheel motion is constrained and the points are naturally aligned along that direction. In such cases, the constraint equations must be defined to explicitly account for this alignment, ensuring numerical stability during simulations.
 
-Here condider a system defined with 3 points.
+Here, a system defined with three points is considered:
 
-In a simple form as:
+.. figure:: images/aligned_three_point_image.png
+   :alt: aligned three point system
+   :align: center
 
-       P1         P2            P3
-       *----------*  -  -  -  - *
-      / \        / \    
-      ---        ---
-     ////       ////
+Note that points $P_1$ and $P_2$ are fixed, while point $P_3$ moves in the same direction as the line defined by $P_1$ and $P_2$. Therefore, the constraint equations are defined such that:
 
-Note that the P1 and P2 point are fixed. And the point P3 move with the same direction of the line defined by P1 and P2. So, the constraint equations are:
-
-So here the direccion of the movement of P3 is 
+The direction of motion of $P_3$ is given by:
 
 .. math::
 

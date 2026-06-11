@@ -1,7 +1,7 @@
-.. _theory_suspensions_kinematics:
+.. _theory_car_kinematics:
 
-Suspension Analysis
--------------------
+Car Kinematics
+--------------
 
 The **pyMyCar** model incorporates detailed suspension behavior through the use of lookup table information. This allows the model to relate the wheel jounce (relative displacement of the wheel with respect to the car chassis) to various dynamic variables, tire models, and other factors influencing vehicle dynamics.
 

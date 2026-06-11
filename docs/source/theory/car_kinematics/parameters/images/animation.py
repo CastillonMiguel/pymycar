@@ -23,7 +23,7 @@ import time
 ###############################################################################
 # Import from pymycar package
 # ---------------------------
-from pymycar.Cad.Chassis.formula import model_A, model_B
+from pymycar.Cad.Car.frame import formula, model_B, model_C
 # from pymycar.Cad.Wheel import wheel_cad
 import pymycar
 
@@ -65,7 +65,7 @@ import pymycar
 output_dir = "animation_frames"
 os.makedirs(output_dir, exist_ok=True)
 
-chassis = model_A(front_axle_to_com=1500,
+chassis = formula(front_axle_to_com=1500,
             rear_axle_to_com=1645*0.5,
             front_track=1500*0.5,
             rear_track=1645*0.5,
@@ -90,7 +90,7 @@ coordinate_right_wheel = np.array([1500, 1500/2, 156.5])
 coordinate_left_wheel = np.array([1500, -1500/2, 156.5])
 
 # Chassis model
-chassis_tourist_A = pymycar.Cad.Chassis.tourist.model_A()
+chassis_tourist_A = model_B()
 
 # Define the specific point location for the reference coordinate system
 reference_point = np.array([0, 0, 400])

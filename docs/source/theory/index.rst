@@ -9,9 +9,9 @@ Welcome to the theory section. Originally, pymycar was developed as a tool for c
 
 3. **Lateral Dynamics** (:ref:`theory_lateral_models`):
 
-4. **Kinematic Models** (:ref:`theory_kinematic`): This section outlines the general framework for conducting kinematic analysis of car suspension systems and motorcycles.
+4. **Kinematic Models** (:ref:`theory_Kinematics:`): This section outlines the general framework for conducting kinematic analysis of car suspension systems and motorcycles.
 
-5. **Car Suspension Kinematics** (:ref:`theory_suspensions_kinematics`): Here, the kinematic analysis focuses on car suspension systems, examining the kinematics of the wheels and the suspension. It covers double wishbone and multilink systems, and includes the analysis of variables such as wheelbase, camber, toe, etc.
+5. **Car Suspension Kinematics** (:ref:`theory_car_kinematics`): Here, the kinematic analysis focuses on car suspension systems, examining the kinematics of the wheels and the suspension. It covers double wishbone and multilink systems, and includes the analysis of variables such as wheelbase, camber, toe, etc.
    
 6. **Motorcycle Kinematics** (:ref:`theory_motorcycle_kinematics`): This part focuses on the kinematic analysis of motorcycles, detailing the kinematics of the wheels and suspension system. It covers components like telescopic forks and single shock absorbers, and includes the analysis of variables such as wheelbase, camber, toe, etc.
 
