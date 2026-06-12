@@ -8,6 +8,9 @@ Introduction
 ------------
 Welcome to the `pyMyCar` package documentation! This package provides comprehensive tools and resources for analyzing vehicle dynamics. Whether you're an automotive engineer, researcher, or car enthusiast, `pyMyCar` empowers you to understand, simulate, and optimize the intricate interactions between different vehicle components and their dynamic behavior.
 
+.. image:: _static/examples.png
+   :width: 800px
+   :align: center
 
 Contributions and Feedback
 --------------------------

@@ -192,7 +192,7 @@ def plot_frame(plotter, data, index=None):
         index = data["index_reference"]
 
     upper_control_arm, lower_control_arm, direction, wheel_center, wheel_axis, spring_o , push_rod, rocked_o = whisbone_cad_configuration_2(data,index)
-    wheel = car_wheel(data, index)
+    wheel = car_wheel(data, index, radius=200, height=50)
     
     # Remove the last meshes
     for mesh in last_meshes:

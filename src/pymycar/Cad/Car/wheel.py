@@ -6,7 +6,7 @@ Wheel
 import pyvista as pv
 import numpy as np
 
-def car_wheel(data, index=None):
+def car_wheel(data, index=None, radius=100, height=20):
     """
     Create a PyVista cylindrical representation of a car wheel, oriented
     according to a direction defined by two reference points.
@@ -38,8 +38,6 @@ def car_wheel(data, index=None):
     - This function is intended for kinematic visualization of wheel motion
       in suspension systems.
     """
-    radius, height = 100, 20
-
     point_a = data["wheel_center"][index]
     point_b = data["wheel_center_axis"][index]
     center = data["wheel_center"][index]
