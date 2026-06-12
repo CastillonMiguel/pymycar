@@ -254,7 +254,7 @@ def whisbone_cad_configuration_1(data, index=None):
     >>> plotter.show()
     """
     upper_control_arm, lower_control_arm, direction, wheel_center, wheel_axis = whisbone_cad_base(data, index)
-    spring_o = spring(data["U_SPRING_MOUNT"], data["l_spring_mount"][index])
+    spring_o = simple_spring(data["U_SPRING_MOUNT"], data["l_spring_mount"][index])
     return upper_control_arm, lower_control_arm, direction, wheel_center, wheel_axis, spring_o  
 
 
