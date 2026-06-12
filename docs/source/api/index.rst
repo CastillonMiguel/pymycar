@@ -9,7 +9,7 @@ Welcome to the API Reference chapter of our documentation! This section provides
    Cad/main
    Files/main
    Logger/main
-   SuspensionKinematic/main
+   CarKinematic/main
    Vehicle/main
    VerticalModels/main
 

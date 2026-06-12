@@ -45,7 +45,7 @@ pyvista.global_theme.font.size = 22
 pyvista.global_theme.font.label_size = 22
 pyvista.global_theme.font.title_size = 22
 pyvista.global_theme.return_cpos = False
-pyvista.set_jupyter_backend(None)
+pyvista.set_jupyter_backend("trame")
 
 
 # necessary when building the sphinx gallery
@@ -78,6 +78,7 @@ from sphinx_gallery.sorting import FileNameSortKey, ExplicitOrder
 extensions = [
     'sphinx.ext.autodoc',
     'numpydoc',
+    'jupyter_sphinx',
     'sphinx.ext.intersphinx',
     'sphinx.ext.coverage',
     'sphinx.ext.doctest',
@@ -138,9 +139,11 @@ sphinx_gallery_conf = {
     # Sort gallery example by file name instead of number of lines (default)
     "within_subsection_order": FileNameSortKey,
     "subsection_order": ExplicitOrder([
-        '../../examples/Cad',
-        '../../examples/SuspensionKinematics',
+        '../../examples/CadCar',
+        '../../examples/CarKinematics',
         '../../examples/VerticalModels',
+        '../../examples/CadMotorcycle',
+        '../../examples/MotorcycleKinematics',
     ]),
     # directory where function granular galleries are stored
     "backreferences_dir": None,
