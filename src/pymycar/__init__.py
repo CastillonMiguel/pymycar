@@ -1,6 +1,6 @@
 # pymycar/__init__.py
 
-__version__ = "0.0.2"
+__version__ = "0.0.3"
 __author__ = "Miguel Castillón"
 __email__ = "miguel.research@pm.me"
 __license__ = "MIT"
