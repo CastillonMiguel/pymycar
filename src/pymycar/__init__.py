@@ -1,6 +1,6 @@
 # pymycar/__init__.py
 
-__version__ = "0.0.2"
+__version__ = "0.0.3"
 __author__ = "Miguel Castillón"
 __email__ = "miguel.research@pm.me"
 __license__ = "MIT"
@@ -10,7 +10,7 @@ __url__ = "https://github.com/CastillonMiguel/pymycar"
 # Import submodules to be included in the package namespace
 from .Cad import *
 from .Logger import *
-# from .MotorCycleKinematic import *
+from .MotorCycleKinematic import *
 from .CarKinematic import *
 from .Vehicle import *
 from .VerticalModels import *
@@ -21,7 +21,7 @@ from .files import *
 __all__ = [
     'Cad',
     'Logger',
-    # 'MotorCycleKinematic',
+    'MotorCycleKinematic',
     'CarKinematic',
     'Vehicle',
     'VerticalModels',
